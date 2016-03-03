@@ -1,7 +1,8 @@
 #include <Windows.h>
 #include <gl/GL.h>
 #include <gl/GLU.h>
-
+#include "Iman.h"
+#include "Tetraedro.h"
 #include <GL/freeglut.h>
 //#include <GL/glut.h>
 
@@ -11,6 +12,8 @@ using namespace std;
 // Freeglut parameters
 // Flag telling us to keep processing events
 // bool continue_in_main_loop= true; //(**)
+
+Iman *t1 = new Iman();
 
 // Viewport size
 int WIDTH= 500, HEIGHT= 500;
@@ -96,9 +99,11 @@ void display(void) {
 			glVertex3f(0, 0, 20);	     
 		glEnd();
 		 		
+		t1->dibuja();
+
 		// Drawing the scene	 		 
 		glColor3f(1.0, 1.0, 1.0);
-		glutSolidSphere(6, 50, 60); //Sphere: radius=6, meridians=50, parallels=60
+		//glutSolidSphere(6, 50, 60); //Sphere: radius=6, meridians=50, parallels=60
 	glPopMatrix();
  
 	glFlush();
@@ -146,7 +151,7 @@ void key(unsigned char key, int x, int y){
 		case 's': angY=angY+5; break;
 		case 'x': angY=angY-5; break;
 		case 'd': angZ=angZ+5; break;
-		case 'c': angZ=angZ-5; break;  
+		case 'c': angZ=angZ-5; break;
 		default:
 			need_redisplay = false;
 			break;

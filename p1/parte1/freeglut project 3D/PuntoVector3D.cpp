@@ -22,6 +22,17 @@ GLfloat PuntoVector3D::getZ() {
     return z;
 }
 
+void PuntoVector3D::setX(GLfloat a) {
+	this->x = a;
+}
+void PuntoVector3D::setY(GLfloat a) {
+	this->y = a;
+}
+
+void PuntoVector3D::setZ(GLfloat a) {
+	this->z = a;
+}
+
 bool PuntoVector3D::esPunto() {
     return pv==1;
 }

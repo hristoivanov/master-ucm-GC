@@ -23,6 +23,9 @@ class PuntoVector3D {
         PuntoVector3D* clonar();
         GLfloat productoEscalar(PuntoVector3D* vector);
         PuntoVector3D* productoVectorial(PuntoVector3D* vector);
+		void setX(GLfloat a);
+		void setY(GLfloat a);
+		void setZ(GLfloat a);
 };
 #endif
 
