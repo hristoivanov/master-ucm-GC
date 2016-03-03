@@ -14,8 +14,8 @@ Iman::Iman() {
 	int n = 20;
 
 	//Tamaños de los arrays
-	numeroVertices = n*m;
-	numeroCaras = n*(m - 1);
+	numeroVertices = (n+3)*m;
+	numeroCaras = (2+n)*(m - 1)+2;
 	numeroNormales = numeroCaras;
 
 	//Creación de los arrays
@@ -24,28 +24,51 @@ Iman::Iman() {
 	cara = new Cara*[numeroCaras];
 
 	//Colocar el perfil original en la tabla de vertices
-	for (int j = 0; j<m; j++) vertice[j] = perfil[j]->clonar();
+	//for (int j = 0; j<m; j++) vertice[j] = perfil[j]->clonar();
 
 	//Vertices de la malla
-	for (int i = 1; i<n; i++){ //generar el perfil i-ésimo
+	for (int i = -1; i<(n+2); i++){ //generar el perfil i-ésimo
+		if (i == -1){
+			for (int j = 0; j < m; j++) {
+				PuntoVector3D* p = new PuntoVector3D(perfil[j]->getX(), perfil[j]->getY(), perfil[j]->getZ()+5.0f, 1);
+				vertice[j] = p;
+			}
+			continue;
+		}
 		double theta = i * 180 / (double)n;
+		if (i == n + 1){
+			theta = (i-1) * 180 / (double)n;
+		}
 		double c = cos(theta*3.14/180.0); 
 		double s = sin(theta*3.14/180.0);
 		//R_y es la matriz de rotación sobre el eje Y
 		for (int j = 0; j<m; j++) {
-			int indice = i*m + j;
+			int indice = (i+1)*m + j;
 			//Transformar el punto j-ésimo del perfil original
 			double x = c*perfil[j]->getX() + s*perfil[j]->getZ();
 			double z = -s*perfil[j]->getX() + c*perfil[j]->getZ();
+			if (i == n + 1){
+				z += 5.0f;
+			}
+
 			PuntoVector3D* p = new PuntoVector3D(x, perfil[j]->getY(), z, 1);
 			//std::cout << x << "," << perfil[j]->getY() << ","<< z << "\n";
 			vertice[indice] = p;
 		} //for
 	} //for
 
+	VerticeNormal** vn = new VerticeNormal*[4];
+	vn[0] = new VerticeNormal(0, 0);
+	vn[1] = new VerticeNormal(1, 0);
+	vn[2] = new VerticeNormal(2, 0);
+	vn[3] = new VerticeNormal(3, 0);
+
+	cara[0] = new Cara(4, vn);
+	PuntoVector3D* v = CalculoVectorNormalPorNewell(cara[0]); //Newell
+	normal[0] = v;
 
 	int indiceCara = 0;
-	for (int i = 0; i<n; i++){ //unir el perfil i-ésimo con el (i+1)%n-ésimo
+	for (int i = 0; i<n+2; i++){ //unir el perfil i-ésimo con el (i+1)%n-ésimo
 		for (int j = 0; j<m - 1; j++) { //esquina inferior-izquierda de una cara
 			// indiceCara = i*(m-1) + j;
 			int indice = i*m + j;
@@ -55,13 +78,34 @@ Iman::Iman() {
 			vn[2] = new VerticeNormal((indice + 1 + m) % numeroVertices, indiceCara);
 			vn[3] = new VerticeNormal(indice + 1, indiceCara);
 			//std::cout << indice << "," << (indice + m) % numVertices << "," << (indice + 1 + m) % numVertices << "," << indice + 1 << "\n";
-			cara[indiceCara] = new Cara(4, vn);
+			cara[indiceCara+1] = new Cara(4, vn);
 
-			PuntoVector3D* v = CalculoVectorNormalPorNewell(cara[indiceCara]); //Newell
-			normal[indiceCara] = v;
+			PuntoVector3D* v = CalculoVectorNormalPorNewell(cara[indiceCara+1]); //Newell
+			normal[indiceCara+1] = v;
 			indiceCara++;
 		} //for
 	} //for
+
+	/*
+	VerticeNormal** vn = new VerticeNormal*[4];
+	vn[0] = new VerticeNormal(0, numeroNormales-2);
+	vn[1] = new VerticeNormal(1, numeroNormales-2);
+	vn[2] = new VerticeNormal(2, numeroNormales-2);
+	vn[3] = new VerticeNormal(3, numeroNormales-2);
+
+	cara[numeroNormales - 2] = new Cara(4, vn);
+	PuntoVector3D* v = CalculoVectorNormalPorNewell(cara[numeroNormales - 2]); //Newell
+	normal[numeroNormales - 2] = v;*/
+
+	vn = new VerticeNormal*[4];
+	vn[0] = new VerticeNormal(numeroVertices-4, numeroNormales - 1);
+	vn[1] = new VerticeNormal(numeroVertices-3, numeroNormales - 1);
+	vn[2] = new VerticeNormal(numeroVertices-2, numeroNormales - 1);
+	vn[3] = new VerticeNormal(numeroVertices-1, numeroNormales - 1);
+
+	cara[numeroNormales - 1] = new Cara(4, vn);
+	v = CalculoVectorNormalPorNewell(cara[numeroNormales - 1]); //Newell
+	normal[numeroNormales - 1] = v;
 	
 }
 
@@ -83,16 +127,17 @@ Iman::~Iman() {
 }
 
 void Iman::dibuja() {
+	glColor3f(0.0f, 0.0f, 1.0f);
 	for (int i = 0; i<numeroCaras; i++) {
+		if (i * 2 +1> numeroCaras){
+			glColor3f(1.0f, 0.0f, 0.0f);
+		}
 		glBegin(GL_POLYGON);
-		glColor3f(0.0f, 1.0f, 0.0f);
 		for (int j = 0; j<cara[i]->getNumeroVertices(); j++) {
-			std::cout << "Cara = "<< j;
 			int iN = cara[i]->getIndiceNormalK(j);
 			int iV = cara[i]->getIndiceVerticeK(j);
 			glNormal3f(normal[iN]->getX(), normal[iN]->getY(), normal[iN]->getZ());
 			glVertex3f(vertice[iV]->getX(), vertice[iV]->getY(), vertice[iV]->getZ());
-			std::cout << vertice[iV]->getX() << "," << vertice[iV]->getY() << "," << vertice[iV]->getZ() << "\n";
 		}
 		glEnd();
 	}
