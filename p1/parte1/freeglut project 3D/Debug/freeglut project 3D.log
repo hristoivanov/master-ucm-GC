@@ -1,19 +1,9 @@
-﻿Build started 04/03/2016 16:46:12.
+﻿Build started 04/03/2016 16:53:29.
      1>Project "C:\hlocal\master-ucm-GC\p1\parte1\freeglut project 3D\freeglut project 3D.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /I"C:\hlocal\master-ucm-GC\p1\parte1\freeglut\include\\" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Cubo.cpp Iman.cpp Malla.cpp Revolucion.cpp Tetraedro.cpp main.cpp
+         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /I"C:\hlocal\master-ucm-GC\p1\parte1\freeglut\include\\" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Revolucion.cpp
          Revolucion.cpp
      1>c:\hlocal\master-ucm-gc\p1\parte1\freeglut project 3d\revolucion.cpp(40): warning C4244: 'argument' : conversion from 'double' to 'GLfloat', possible loss of data
-         Generating Code...
-         Compiling...
-         main.cpp
-         Tetraedro.cpp
-         Malla.cpp
-         Cubo.cpp
-         Generating Code...
-         Compiling...
-         Iman.cpp
-         Generating Code...
        Link:
          C:\software\programacion\MSVStudio2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\hlocal\master-ucm-GC\p1\parte1\Debug\freeglut project 3D.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\hlocal\master-ucm-GC\p1\parte1\freeglut\lib\\" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\hlocal\master-ucm-GC\p1\parte1\Debug\freeglut project 3D.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\hlocal\master-ucm-GC\p1\parte1\Debug\freeglut project 3D.lib" /MACHINE:X86 Debug\Cara.obj
          Debug\Cubo.obj
@@ -29,4 +19,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.68
+Time Elapsed 00:00:00.73

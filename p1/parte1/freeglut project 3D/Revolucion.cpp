@@ -47,26 +47,17 @@ Revolucion::Revolucion() {
 	for (int i = 0; i<n; i++){ //unir el perfil i-ésimo con el (i+1)%n-ésimo
 		for (int j = 0; j<m; j++) { //esquina inferior-izquierda de una cara
 			// indiceCara = i*(m-1) + j;
-			if (j == m - 1){
-				int indice = i*m + j;
-				VerticeNormal** vn = new VerticeNormal*[4];
-				vn[0] = new VerticeNormal(indice, indiceCara);
-				vn[1] = new VerticeNormal((indice + m) % numeroVertices, indiceCara);
-				vn[2] = new VerticeNormal((indice + 1) % numeroVertices, indiceCara);
-				vn[3] = new VerticeNormal(indice - m + 1, indiceCara);
-				cara[indiceCara] = new Cara(4, vn);
-
-				PuntoVector3D* v = CalculoVectorNormalPorNewell(cara[indiceCara]); //Newell
-				normal[indiceCara] = v;
-				indiceCara++;
-				continue;
-			}
 			int indice = i*m + j;
 			VerticeNormal** vn = new VerticeNormal*[4];
 			vn[0] = new VerticeNormal(indice, indiceCara);
 			vn[1] = new VerticeNormal((indice + m) % numeroVertices, indiceCara);
-			vn[2] = new VerticeNormal((indice + 1 + m) % numeroVertices, indiceCara);
-			vn[3] = new VerticeNormal(indice + 1, indiceCara);
+			if (j == m - 1){
+				vn[2] = new VerticeNormal((indice + 1) % numeroVertices, indiceCara);
+				vn[3] = new VerticeNormal(indice - m + 1, indiceCara);
+			}else{
+				vn[2] = new VerticeNormal((indice + 1 + m) % numeroVertices, indiceCara);
+				vn[3] = new VerticeNormal(indice + 1, indiceCara);
+			}
 			cara[indiceCara] = new Cara(4, vn);
 
 			PuntoVector3D* v = CalculoVectorNormalPorNewell(cara[indiceCara]); //Newell
