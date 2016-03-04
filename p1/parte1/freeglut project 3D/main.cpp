@@ -1,7 +1,7 @@
 #include <Windows.h>
 #include <gl/GL.h>
 #include <gl/GLU.h>
-#include "Iman.h"
+#include "Revolucion.h"
 #include "Tetraedro.h"
 #include <GL/freeglut.h>
 //#include <GL/glut.h>
@@ -13,7 +13,7 @@ using namespace std;
 // Flag telling us to keep processing events
 // bool continue_in_main_loop= true; //(**)
 
-Iman *t1 = new Iman();
+Revolucion *t1 = new Revolucion();
 
 // Viewport size
 int WIDTH= 500, HEIGHT= 500;
