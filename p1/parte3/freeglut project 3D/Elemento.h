@@ -16,9 +16,9 @@ protected:
 	int numeroColores;
 	Color** color;
 
-	PuntoVector3D posicion;
-	PuntoVector3D rotacion;
-	PuntoVector3D escalado;
+	PuntoVector3D* posicion;
+	PuntoVector3D* rotacion;
+	PuntoVector3D* escalado;
 
 public:
 	Elemento();
