@@ -33,8 +33,9 @@ int Elemento::getNumeroCaras() {
 }
 
 void Elemento::dibuja() {	 	 
-	glLoadIdentity();
-	glTranslatef(posicion->getX(), posicion->getY(), posición->getZ());
+	//glLoadIdentity();
+	glPushMatrix();
+	glTranslatef(posicion->getX(), posicion->getY(), posicion->getZ());
 	glRotatef(posicion->getX(), 1.0f, 0.0f, 0.0f );
 	glRotatef(posicion->getY(), 0.0f, 1.0f, 0.0f );
 	glRotatef(posicion->getZ(), 0.0f, 0.0f, 1.0f );
@@ -49,11 +50,12 @@ void Elemento::dibuja() {
 			glVertex3f(vertice[iV]->getX(), vertice[iV]->getY(), vertice[iV]->getZ());
 		}
 		glEnd();
-	}	 
+	}
+	glPopMatrix();
 }
 
 
-PuntoVector3D* Malla::CalculoVectorNormalPorNewell(Cara* c){
+PuntoVector3D* Elemento::CalculoVectorNormalPorNewell(Cara* c){
 	PuntoVector3D* n = new PuntoVector3D(0, 0, 0, 1);
 
 	for (int i = 0; i < c->getNumeroVertices(); i++){

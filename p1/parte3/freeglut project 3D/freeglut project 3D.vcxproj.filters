@@ -30,10 +30,13 @@
     <ClCompile Include="VerticeNormal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Extrusion.cpp">
+    <ClCompile Include="Color.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Color.cpp">
+    <ClCompile Include="Elemento.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cilindro.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,13 +53,13 @@
     <ClInclude Include="VerticeNormal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Extrusion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Elemento.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cilindro.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

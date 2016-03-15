@@ -1,9 +1,7 @@
 #include <Windows.h>
 #include <gl/GL.h>
 #include <gl/GLU.h>
-#include "Revolucion.h"
-#include "Tetraedro.h"
-#include "Extrusion.h"
+#include "Cilindro.h"
 #include <GL/freeglut.h>
 //#include <GL/glut.h>
 
@@ -14,7 +12,7 @@ using namespace std;
 // Flag telling us to keep processing events
 // bool continue_in_main_loop= true; //(**)
 
-Extrusion *t1 = new Extrusion(10, 200);
+Cilindro *t1 = new Cilindro(4, 1.0);
 
 // Viewport size
 int WIDTH= 500, HEIGHT= 500;
