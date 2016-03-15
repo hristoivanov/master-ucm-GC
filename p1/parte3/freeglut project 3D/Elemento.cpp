@@ -33,6 +33,13 @@ int Elemento::getNumeroCaras() {
 }
 
 void Elemento::dibuja() {	 	 
+	glLoadIdentity();
+	glTranslatef(posicion->getX(), posicion->getY(), posición->getZ());
+	glRotatef(posicion->getX(), 1.0f, 0.0f, 0.0f );
+	glRotatef(posicion->getY(), 0.0f, 1.0f, 0.0f );
+	glRotatef(posicion->getZ(), 0.0f, 0.0f, 1.0f );
+	glScalef(escalado->getX(), escalado->getY(), escalado->getZ());
+
 	for (int i=0; i<numeroCaras; i++) {		
 		glBegin(GL_POLYGON);			 
 		for (int j=0; j<cara[i]->getNumeroVertices(); j++) {
