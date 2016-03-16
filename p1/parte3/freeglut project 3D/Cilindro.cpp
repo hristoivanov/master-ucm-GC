@@ -1,10 +1,6 @@
 #include "Cilindro.h"
 
 Cilindro::Cilindro(int nP, float ratio) {
-	posicion = new PuntoVector3D(0.0f, 1.0f, 0.0f, 1);
-	rotacion = new PuntoVector3D(0.0f, 0.0f, 0.0f, 0);
-	escalado = new PuntoVector3D(1.0f, 1.0f, 1.0f, 0);
-
 	numeroVertices = nP * 2;
 	numeroCaras = nP + 2;
 	numeroNormales = numeroCaras;
@@ -14,16 +10,16 @@ Cilindro::Cilindro(int nP, float ratio) {
 	normal = new PuntoVector3D*[numeroNormales];
 	cara = new Cara*[numeroCaras];
 
-	float radio = 1;
+	float radio = .5;
 
-	for (int i = 0; i < nP; i++){
+	for (int i = 0; i < 2; i++){
 		for (int j = 0; j < nP; j++){
 			float theta = j * 3.14 * 2.0 / (float)nP;
 			float c = cos(theta);
 			float s = sin(theta);
 
-			if (i==0) vertice[j+(i*nP)] = new PuntoVector3D(c*radio, -1, s*radio, 1);
-			if (i==1) vertice[j+(i*nP)] = new PuntoVector3D(c*radio*ratio, 1, s*radio*ratio, 1);
+			if (i==0) vertice[j+(i*nP)] = new PuntoVector3D(c*radio, i, s*radio, 1);
+			if (i==1) vertice[j+(i*nP)] = new PuntoVector3D(c*radio*ratio, i, s*radio*ratio, 1);
 		}
 	}
 

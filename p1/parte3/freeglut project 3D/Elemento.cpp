@@ -1,6 +1,12 @@
 #include "Elemento.h"
  
-Elemento::Elemento() {}
+Elemento::Elemento() {
+	color = new float[3]();
+	posicion = new float[3]();
+	rotacion = new float[3]();
+	escalado = new float[3]();
+	escalado[0] = 1.0; escalado[1] = 1.0; escalado[2] = 1.0;
+}
 
 Elemento::~Elemento() {
     for (int i=0; i<numeroVertices; i++)
@@ -15,32 +21,44 @@ Elemento::~Elemento() {
         delete cara[i];
     delete[] cara;
 
-    for (int i=0; i<numeroColores; i++)
-        delete color[i];
-    delete[] color;
+	delete posicion;
+	delete rotacion;
+	delete escalado;
 }
 
-int Elemento::getNumeroVertices() {
-    return numeroVertices;
+void Elemento::setColor(GLfloat red, GLfloat green, GLfloat blue){
+	color[0] = red;
+	color[1] = green;
+	color[2] = blue;
 }
 
-int Elemento::getNumeroNormales() {
-    return numeroNormales;
+void Elemento::setPosicion(GLfloat x, GLfloat y, GLfloat z){
+	posicion[0] = x;
+	posicion[1] = y;
+	posicion[2] = z;
 }
 
-int Elemento::getNumeroCaras() {
-    return numeroCaras;
+void Elemento::setRotacion(GLfloat x, GLfloat y, GLfloat z){
+	rotacion[0] = x;
+	rotacion[1] = y;
+	rotacion[2] = z;
 }
 
-void Elemento::dibuja() {	 	 
-	//glLoadIdentity();
-	glPushMatrix();
-	glTranslatef(posicion->getX(), posicion->getY(), posicion->getZ());
-	glRotatef(posicion->getX(), 1.0f, 0.0f, 0.0f );
-	glRotatef(posicion->getY(), 0.0f, 1.0f, 0.0f );
-	glRotatef(posicion->getZ(), 0.0f, 0.0f, 1.0f );
-	glScalef(escalado->getX(), escalado->getY(), escalado->getZ());
+void Elemento::setEscalado(GLfloat x, GLfloat y, GLfloat z){
+	escalado[0] = x;
+	escalado[1] = y;
+	escalado[2] = z;
+}
 
+void Elemento::dibuja() {
+	glPushMatrix();;
+	glTranslatef(posicion[0], posicion[1], posicion[2]);
+	glRotatef(rotacion[0], 1.0f, 0.0f, 0.0f );
+	glRotatef(rotacion[1], 0.0f, 1.0f, 0.0f );
+	glRotatef(rotacion[2], 0.0f, 0.0f, 1.0f );
+	glScalef(escalado[0], escalado[1], escalado[2]);
+
+	glColor3f(color[0], color[1], color[2]);
 	for (int i=0; i<numeroCaras; i++) {		
 		glBegin(GL_POLYGON);			 
 		for (int j=0; j<cara[i]->getNumeroVertices(); j++) {

@@ -66,9 +66,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Abeto.cpp" />
     <ClCompile Include="Cara.cpp" />
     <ClCompile Include="Cilindro.cpp" />
+    <ClCompile Include="Coche.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="Conjunto.cpp" />
     <ClCompile Include="Elemento.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Malla.cpp" />
@@ -76,9 +79,12 @@
     <ClCompile Include="VerticeNormal.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Abeto.h" />
     <ClInclude Include="Cara.h" />
     <ClInclude Include="Cilindro.h" />
+    <ClInclude Include="Coche.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="Conjunto.h" />
     <ClInclude Include="Elemento.h" />
     <ClInclude Include="Malla.h" />
     <ClInclude Include="PuntoVector3D.h" />

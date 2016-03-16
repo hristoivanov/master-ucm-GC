@@ -1,7 +1,8 @@
 #include <Windows.h>
 #include <gl/GL.h>
 #include <gl/GLU.h>
-#include "Cilindro.h"
+#include "Abeto.h"
+#include "Coche.h"
 #include <GL/freeglut.h>
 //#include <GL/glut.h>
 
@@ -11,8 +12,6 @@ using namespace std;
 // Freeglut parameters
 // Flag telling us to keep processing events
 // bool continue_in_main_loop= true; //(**)
-
-Cilindro *t1 = new Cilindro(4, 1.0);
 
 // Viewport size
 int WIDTH= 500, HEIGHT= 500;
@@ -27,11 +26,22 @@ GLdouble upX=0, upY=1, upZ=0;
 
 // Scene variables
 GLfloat angX, angY, angZ; 
+Abeto *e1, *e2;
+Coche *e3;
 
 void buildSceneObjects() {	 
     angX=0.0f;
     angY=0.0f;
     angZ=0.0f;	
+
+	e1 = new Abeto();
+	e1->setPosicion(4.0, 0.0, 0.0);
+
+	e2 = new Abeto();
+	e2->setPosicion(-4.0, 0.0, 0.0);
+	e2->setEscalado(1.7, 1.7, 1.7);
+
+	e3 = new Coche();
 }
 
 void initGL() {	 		 
@@ -98,7 +108,9 @@ void display(void) {
 		glVertex3f(0, 0, 20);	     
 	glEnd();
 
-	t1->dibuja();
+	e1->dibuja();
+	e2->dibuja();
+	e3->dibuja();
 
 	// Drawing the scene	 		 
 	glColor3f(1.0, 1.0, 1.0);

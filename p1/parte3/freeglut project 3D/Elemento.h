@@ -13,20 +13,20 @@ protected:
 	PuntoVector3D** normal;
 	int numeroCaras;
 	Cara** cara;
-	int numeroColores;
-	Color** color;
 
-	PuntoVector3D* posicion;
-	PuntoVector3D* rotacion;
-	PuntoVector3D* escalado;
+	GLfloat* color;
+	GLfloat* posicion;
+	GLfloat* rotacion;
+	GLfloat* escalado;
 
 public:
 	Elemento();
 	~Elemento();
-	int getNumeroVertices();
-	int getNumeroNormales();
-	int getNumeroCaras();
 	virtual void dibuja();
+	void setColor(GLfloat red, GLfloat green, GLfloat blue);
+	void setPosicion(GLfloat x, GLfloat y, GLfloat z);
+	void setRotacion(GLfloat x, GLfloat y, GLfloat z);
+	void setEscalado(GLfloat x, GLfloat y, GLfloat z);
 	PuntoVector3D* CalculoVectorNormalPorNewell(Cara* c);
 };
 #endif

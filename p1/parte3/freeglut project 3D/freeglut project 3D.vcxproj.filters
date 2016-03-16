@@ -39,6 +39,15 @@
     <ClCompile Include="Cilindro.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Conjunto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Abeto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Coche.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cara.h">
@@ -60,6 +69,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Cilindro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Conjunto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Abeto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Coche.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
