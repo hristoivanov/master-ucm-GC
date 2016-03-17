@@ -1,8 +1,11 @@
 #include <Windows.h>
 #include <gl/GL.h>
 #include <gl/GLU.h>
-#include "Abeto.h"
 #include "Coche.h"
+#include "Pino.h"
+#include "Roble.h"
+#include "Abeto.h"
+#include "Alamo.h"
 #include <GL/freeglut.h>
 //#include <GL/glut.h>
 
@@ -26,8 +29,11 @@ GLdouble upX=0, upY=1, upZ=0;
 
 // Scene variables
 GLfloat angX, angY, angZ; 
-Abeto *e1, *e2;
-Coche *e3;
+Abeto *e1;
+Roble *e2;
+Pino *e3;
+Alamo *e4;
+Coche *e5;
 
 void buildSceneObjects() {	 
     angX=0.0f;
@@ -35,13 +41,16 @@ void buildSceneObjects() {
     angZ=0.0f;	
 
 	e1 = new Abeto();
-	e1->setPosicion(4.0, 0.0, 0.0);
+	e1->setPosicion(-12, 0.0, -5);
+	e2 = new Roble();
+	e2->setPosicion(-4, 0.0, -5);
+	e3 = new Pino();
+	e3->setPosicion(4, 0.0, -5);
+	e4 = new Alamo();
+	e4->setPosicion(12, 0.0, -5);
 
-	e2 = new Abeto();
-	e2->setPosicion(-4.0, 0.0, 0.0);
-	e2->setEscalado(1.7, 1.7, 1.7);
 
-	e3 = new Coche();
+	e5 = new Coche();
 }
 
 void initGL() {	 		 
@@ -111,6 +120,9 @@ void display(void) {
 	e1->dibuja();
 	e2->dibuja();
 	e3->dibuja();
+	e4->dibuja();
+
+	e5->dibuja();
 
 	// Drawing the scene	 		 
 	glColor3f(1.0, 1.0, 1.0);
@@ -162,6 +174,8 @@ void key(unsigned char key, int x, int y){
 		case 'x': angY=angY-5; break;
 		case 'd': angZ=angZ+5; break;
 		case 'c': angZ=angZ-5; break;
+		case 'f': e5->avanza(0.1); break;
+		case 'v': e5->avanza(-0.1); break;
 		default:
 			  need_redisplay = false;
 			  break;

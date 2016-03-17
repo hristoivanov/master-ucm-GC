@@ -9,7 +9,6 @@ Rueda::Rueda() {
 	elemento[0]->setPosicion(0.0, 0.0, -0.5);
 
 	elemento[1] = new Disco(0, 8, 8);
-	//elemento[2]->setEscalado(1 / sqrtf(2.0), 1 / sqrtf(2.0), 1.0);
 	elemento[1]->setPosicion(0.0, 0.0, 0.5);
 }
 

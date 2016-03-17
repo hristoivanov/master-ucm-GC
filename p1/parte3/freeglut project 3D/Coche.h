@@ -2,10 +2,12 @@
 #define Coche_H_
 
 #include "Conjunto.h"
-#include "Cilindro.h"
+#include "Cubo.h"
+#include "Rueda.h"
 
 class Coche : public Conjunto {
 public:
 	Coche();
+	void avanza(GLfloat f);
 };
 #endif

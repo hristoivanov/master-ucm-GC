@@ -3,6 +3,7 @@
 
 #include "Conjunto.h"
 #include "Cilindro.h"
+#include "Disco.h"
 
 class Abeto : public Conjunto {
 public:

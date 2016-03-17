@@ -4,7 +4,13 @@
 #include "Elemento.h"
 
 class Cilindro : public Elemento {
+private:
+	GLdouble topRadio;
+	GLUquadric* cilindro;
+	GLint slices;
+	GLint stacks;
 public:
-	Cilindro(int nP, float ratio);
+	Cilindro(GLdouble topRadio, GLint slices, GLint stacks);
+	void dibuja();
 };
 #endif
