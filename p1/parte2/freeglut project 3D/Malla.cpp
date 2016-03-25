@@ -51,26 +51,14 @@ void Malla::dibuja() {
 	}	 
 }
 
-
-PuntoVector3D* Malla::CalculoVectorNormalPorNewell(Cara* c){
-	PuntoVector3D* n = new PuntoVector3D(0, 0, 0, 1);
-
-	for (int i = 0; i < c->getNumeroVertices(); i++){
-		PuntoVector3D* vertActual = vertice[c->getIndiceVerticeK(i)];
-		PuntoVector3D* vertSiguiente = vertice[c->getIndiceVerticeK((i + 1) % c->getNumeroVertices())];
-		int aux = c->getIndiceVerticeK((i + 1) % c->getNumeroVertices());
-
-		n->setX((vertActual->getY() - vertSiguiente->getY()) * (vertActual->getZ() + vertSiguiente->getZ()));
-
-		n->setY((vertActual->getZ() - vertSiguiente->getZ()) * (vertActual->getX() + vertSiguiente->getX()));
-
-		n->setZ((vertActual->getX() - vertSiguiente->getX()) * (vertActual->getY() + vertSiguiente->getY()));
-
-	}
-
-	n->normalizar();
-
-	return n;
+PuntoVector3D* Malla::CalculoVectorNormal(Cara* c){
+	PuntoVector3D* v1 = vertice[c->getIndiceVerticeK(0)];
+	PuntoVector3D* v2 = vertice[c->getIndiceVerticeK(1)];
+	PuntoVector3D* v3 = vertice[c->getIndiceVerticeK(2)];
+	PuntoVector3D* mult = (new PuntoVector3D(v2->getX()-v1->getX(),v2->getY()-v1->getY(),v2->getZ()-v1->getZ(),0))->productoVectorial(
+							new PuntoVector3D(v3->getX()-v1->getX(),v3->getY()-v1->getY(),v3->getZ()-v1->getZ(),0));
+	mult->normalizar();
+	return mult;
 }
 
  

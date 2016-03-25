@@ -20,6 +20,6 @@ class Malla {
         int getNumeroNormales();
         int getNumeroCaras();         
         virtual void dibuja();     
-		PuntoVector3D* CalculoVectorNormalPorNewell(Cara* c);
+		PuntoVector3D* CalculoVectorNormal(Cara* c);
 };
 #endif

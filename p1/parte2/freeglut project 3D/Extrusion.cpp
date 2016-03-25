@@ -2,6 +2,9 @@
 #include <math.h>
 
 Extrusion::Extrusion(int nP, int nQ) {
+	a = 7;
+	b = 4;
+	c = 2;
 	double radio = .5;
 
 	PuntoVector3D** perfil = new PuntoVector3D*[nP];
@@ -58,7 +61,7 @@ Extrusion::Extrusion(int nP, int nQ) {
 			}
 			cara[indiceCara] = new Cara(4, vn);
 
-			PuntoVector3D* v = CalculoVectorNormalPorNewell(cara[indiceCara]); //Newell
+			PuntoVector3D* v = CalculoVectorNormal(cara[indiceCara]); //Newell
 			normal[indiceCara] = v;
 			indiceCara++;
 		} //for

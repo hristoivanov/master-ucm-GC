@@ -11,9 +11,9 @@ public:
 	void dibuja();
 
 private:
-	float a = 7;
-	float b = 4;
-	float c = 2;
+	float a;
+	float b;
+	float c;
 	PuntoVector3D* Extrusion::vectC(double t);
 	PuntoVector3D* Extrusion::vectT(double t);
 	PuntoVector3D* Extrusion::vectB(double t);
