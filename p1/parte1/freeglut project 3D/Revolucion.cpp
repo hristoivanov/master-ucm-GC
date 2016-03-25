@@ -60,7 +60,7 @@ Revolucion::Revolucion() {
 			}
 			cara[indiceCara] = new Cara(4, vn);
 
-			PuntoVector3D* v = CalculoVectorNormalPorNewell(cara[indiceCara]); //Newell
+			PuntoVector3D* v = CalculoVectorNormal(cara[indiceCara]); //Newell
 			normal[indiceCara] = v;
 			indiceCara++;
 		} //for
