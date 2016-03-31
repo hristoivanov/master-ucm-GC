@@ -2,14 +2,13 @@
 #include <math.h>
 #include <iostream>
 
-Revolucion::Revolucion() {
+Revolucion::Revolucion(GLfloat coorX,GLfloat coorY,GLfloat coorZ,GLfloat tamanho) {
 	int m = 4;
 	PuntoVector3D** perfil = new PuntoVector3D*[m];
-	perfil[0] = new PuntoVector3D(3.0f, 0.0f, 0.0f, 1);
-	perfil[1] = new PuntoVector3D(6.0f, 0.0f, 0.0f, 1);
-	perfil[2] = new PuntoVector3D(6.0f, 3.0f, 0.0f, 1);
-	perfil[3] = new PuntoVector3D(3.0f, 3.0f, 0.0f, 1);
-	//perfil[4] = new PuntoVector3D(3.0f, 0.0f, 0.0f, 1);
+	perfil[0] = new PuntoVector3D(coorX			, coorY			, coorZ, 1);
+	perfil[1] = new PuntoVector3D(coorX+tamanho	, coorY			, coorZ, 1);
+	perfil[2] = new PuntoVector3D(coorX+tamanho	, coorY+tamanho	, coorZ, 1);
+	perfil[3] = new PuntoVector3D(coorX			, coorY+tamanho	, coorZ, 1);
 
 	int n = 20;
 
@@ -28,15 +27,15 @@ Revolucion::Revolucion() {
 
 	//Vertices de la malla
 	for (int i = 0; i<n+1; i++){ //generar el perfil i-ésimo
-		double theta = i * 180.0 / (double)n;
-		double c = cos(theta*3.14/180.0);
-		double s = sin(theta*3.14/180.0);
+		GLfloat theta = i * 180.0f / (GLfloat)n;
+		GLfloat c = cos(theta*3.14f/180.0f);
+		GLfloat s = sin(theta*3.14f/180.0f);
 		//R_y es la matriz de rotación sobre el eje Y
 		for (int j = 0; j<m; j++) {
 			int indice = i*m + j;
 			//Transformar el punto j-ésimo del perfil original
-			double x = c*perfil[j]->getX() + s*perfil[j]->getZ();
-			double z = -s*perfil[j]->getX() + c*perfil[j]->getZ();
+			GLfloat x = c*perfil[j]->getX() + s*perfil[j]->getZ();
+			GLfloat z = -s*perfil[j]->getX() + c*perfil[j]->getZ();
 			PuntoVector3D* p = new PuntoVector3D(x, perfil[j]->getY(), z, 1);
 			vertice[indice] = p;
 		} //for

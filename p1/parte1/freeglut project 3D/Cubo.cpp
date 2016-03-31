@@ -1,6 +1,9 @@
 #include "Cubo.h"
  
-Cubo::Cubo() {
+Cubo::Cubo(GLfloat coorX,GLfloat coorY,GLfloat coorZ,GLfloat tamanho,GLfloat cX,GLfloat cY,GLfloat cZ){
+	colorX = cX;
+	colorY = cY;
+	colorZ = cZ;
 	numeroVertices=8;
 	vertice=new PuntoVector3D*[numeroVertices];
     numeroNormales=6;
@@ -9,15 +12,15 @@ Cubo::Cubo() {
     cara=new Cara*[6];
 
 	// Vértices de abajo
-	vertice[0]=new PuntoVector3D(5.5f, -5.5f, 5.5f, 1);
-	vertice[1]=new PuntoVector3D(5.5f, -5.5f, -5.5f, 1);
-	vertice[2]=new PuntoVector3D(-5.5f, -5.5f, -5.5f, 1);
-	vertice[3]=new PuntoVector3D(-5.5f, -5.5f, 5.5f, 1);
+	vertice[0]=new PuntoVector3D(coorX+tamanho	, coorY			, coorZ+tamanho	, 1);
+	vertice[1]=new PuntoVector3D(coorX+tamanho	, coorY			, coorZ			, 1);
+	vertice[2]=new PuntoVector3D(coorX			, coorY			, coorZ			, 1);//INI
+	vertice[3]=new PuntoVector3D(coorX			, coorY			, coorZ+tamanho	, 1);
 	// Vértices de arriba
-	vertice[4]=new PuntoVector3D(5.5f, 5.5f, 5.5f, 1);
-	vertice[5]=new PuntoVector3D(5.5f, 5.5f, -5.5f, 1);
-	vertice[6]=new PuntoVector3D(-5.5f, 5.5f, -5.5f, 1);
-	vertice[7]=new PuntoVector3D(-5.5f, 5.5f, 5.5f, 1);
+	vertice[4]=new PuntoVector3D(coorX+tamanho	, coorY+tamanho	, coorZ+tamanho	, 1);
+	vertice[5]=new PuntoVector3D(coorX+tamanho	, coorY+tamanho	, coorZ			, 1);
+	vertice[6]=new PuntoVector3D(coorX			, coorY+tamanho	, coorZ			, 1);//
+	vertice[7]=new PuntoVector3D(coorX			, coorY+tamanho	, coorZ+tamanho	, 1);
 
 	// Normales caras frontal y trasera	 
 	normal[0]=new PuntoVector3D(0.0f, 0.0f, 1.0f, 0);
@@ -92,9 +95,7 @@ Cubo::~Cubo() {
 void Cubo::dibuja() {	 	 	 
 	for (int i=0; i<numeroCaras; i++) {		
 		glBegin(GL_POLYGON);
-		if (i==0 || i==1) glColor3f(0.0f, 0.0f, 1.0f);
-		if (i==2 || i==3) glColor3f(1.0f, 0.0f, 0.0f);
-		if (i==4 || i==5) glColor3f(0.0f, 1.0f, 0.0f);
+		glColor3f(colorX, colorY, colorZ);
 		for (int j=0; j<cara[i]->getNumeroVertices(); j++) {
 			int iN=cara[i]->getIndiceNormalK(j);
 			int iV=cara[i]->getIndiceVerticeK(j);

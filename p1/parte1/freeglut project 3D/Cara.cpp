@@ -1,4 +1,3 @@
- 
 #include "Cara.h"
  
 Cara::Cara(int nV, VerticeNormal** aVN) {

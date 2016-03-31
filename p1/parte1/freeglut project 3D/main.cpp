@@ -4,6 +4,7 @@
 #include "Revolucion.h"
 #include "Tetraedro.h"
 #include <GL/freeglut.h>
+#include "Iman.h"
 //#include <GL/glut.h>
 
 #include <iostream>
@@ -13,7 +14,7 @@ using namespace std;
 // Flag telling us to keep processing events
 // bool continue_in_main_loop= true; //(**)
 
-Revolucion *t1 = new Revolucion();
+Iman* iman = new Iman(3.0f,0.0f,0.0f,3.0f);//El angulo NO esta ajustado para cambiarlo
 
 // Viewport size
 int WIDTH= 500, HEIGHT= 500;
@@ -98,12 +99,9 @@ void display(void) {
 			glVertex3f(0, 0, 0);
 			glVertex3f(0, 0, 20);	     
 		glEnd();
-		 		
-		t1->dibuja();
 
-		// Drawing the scene	 		 
-		glColor3f(1.0, 1.0, 1.0);
-		//glutSolidSphere(6, 50, 60); //Sphere: radius=6, meridians=50, parallels=60
+		iman->dibuja();
+
 	glPopMatrix();
  
 	glFlush();

@@ -5,7 +5,7 @@
 
 class Revolucion : public Malla {
 public:
-	Revolucion();
+	Revolucion(GLfloat coorX,GLfloat coorY,GLfloat coorZ,GLfloat tamanho);
 	~Revolucion();
 	void dibuja();
 };

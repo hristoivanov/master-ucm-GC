@@ -3,7 +3,7 @@
 #define Cara_H_
 
 #include "VerticeNormal.h"
- 
+
 class Cara {
 	private:
 		int numeroVertices;
