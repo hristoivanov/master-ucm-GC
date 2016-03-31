@@ -126,11 +126,9 @@ Extrusion::~Extrusion() {
 }
 
 void Extrusion::dibuja() {
+	glColor3f(0.0f, 1.0f, 0.0f);
 	for (int i = 0; i<numeroCaras; i++) {
 		glBegin(GL_POLYGON);
-		if (i == 0 || i == 1) glColor3f(0.0f, 0.0f, 1.0f);
-		if (i == 2 || i == 3) glColor3f(1.0f, 0.0f, 0.0f);
-		if (i == 4 || i == 5) glColor3f(0.0f, 1.0f, 0.0f);
 		for (int j = 0; j<cara[i]->getNumeroVertices(); j++) {
 			int iN = cara[i]->getIndiceNormalK(j);
 			int iV = cara[i]->getIndiceVerticeK(j);

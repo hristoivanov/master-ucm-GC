@@ -1,7 +1,6 @@
 #include <Windows.h>
 #include <gl/GL.h>
 #include <gl/GLU.h>
-#include "Revolucion.h"
 #include "Tetraedro.h"
 #include "Extrusion.h"
 #include <GL/freeglut.h>
@@ -193,7 +192,7 @@ int main(int argc, char *argv[]){
 	glutSetOption (GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_CONTINUE_EXECUTION) ;
     
 	// Classic glut's main loop can be stopped in freeglut using (*)
-	glutMainLoop(); 
+	glutMainLoop();
   
 	// We would never reach this point using classic glut
 	system("PAUSE"); 

@@ -1,20 +1,13 @@
-﻿Compilación iniciada a las 10/03/2016 19:17:49.
+﻿Compilación iniciada a las 31/03/2016 17:16:54.
      1>Proyecto "C:\Users\usuario_local\Downloads\master-ucm-GC\p1\parte2\freeglut project 3D\freeglut project 3D.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /I"C:\Users\usuario_local\Downloads\master-ucm-GC\p1\parte2\freeglut\include\\" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Extrusion.cpp
-         Extrusion.cpp
-     1>c:\users\usuario_local\downloads\master-ucm-gc\p1\parte2\freeglut project 3d\extrusion.cpp(13): warning C4244: 'argumento' : conversión de 'double' a 'GLfloat'; posible pérdida de datos
-     1>c:\users\usuario_local\downloads\master-ucm-gc\p1\parte2\freeglut project 3d\extrusion.cpp(38): warning C4244: 'argumento' : conversión de 'double' a 'GLfloat'; posible pérdida de datos
-     1>c:\users\usuario_local\downloads\master-ucm-gc\p1\parte2\freeglut project 3d\extrusion.cpp(74): warning C4244: 'argumento' : conversión de 'double' a 'GLfloat'; posible pérdida de datos
-     1>c:\users\usuario_local\downloads\master-ucm-gc\p1\parte2\freeglut project 3d\extrusion.cpp(84): warning C4244: 'argumento' : conversión de 'double' a 'GLfloat'; posible pérdida de datos
-     1>c:\users\usuario_local\downloads\master-ucm-gc\p1\parte2\freeglut project 3d\extrusion.cpp(95): warning C4244: 'argumento' : conversión de 'double' a 'GLfloat'; posible pérdida de datos
-     1>c:\users\usuario_local\downloads\master-ucm-gc\p1\parte2\freeglut project 3d\extrusion.cpp(101): warning C4244: 'argumento' : conversión de 'double' a 'GLfloat'; posible pérdida de datos
+         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /I"C:\Users\usuario_local\Downloads\master-ucm-GC\p1\parte2\freeglut\include\\" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
        Link:
          C:\software\programacion\MSVStudio2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\usuario_local\Downloads\master-ucm-GC\p1\parte2\Debug\freeglut project 3D.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\usuario_local\Downloads\master-ucm-GC\p1\parte2\freeglut\lib\\" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\usuario_local\Downloads\master-ucm-GC\p1\parte2\Debug\freeglut project 3D.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\usuario_local\Downloads\master-ucm-GC\p1\parte2\Debug\freeglut project 3D.lib" /MACHINE:X86 Debug\Cara.obj
          Debug\Cubo.obj
          Debug\Extrusion.obj
          Debug\Iman.obj
-         Debug\Revolucion.obj
          Debug\main.obj
          Debug\Malla.obj
          Debug\PuntoVector3D.obj
@@ -25,4 +18,4 @@
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:00.41
+Tiempo transcurrido 00:00:00.79

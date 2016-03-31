@@ -70,7 +70,6 @@
     <ClCompile Include="Cubo.cpp" />
     <ClCompile Include="Extrusion.cpp" />
     <ClCompile Include="Iman.cpp" />
-    <ClCompile Include="Revolucion.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Malla.cpp" />
     <ClCompile Include="PuntoVector3D.cpp" />
@@ -82,7 +81,6 @@
     <ClInclude Include="Cubo.h" />
     <ClInclude Include="Extrusion.h" />
     <ClInclude Include="Iman.h" />
-    <ClInclude Include="Revolucion.h" />
     <ClInclude Include="Malla.h" />
     <ClInclude Include="PuntoVector3D.h" />
     <ClInclude Include="Tetraedro.h" />
