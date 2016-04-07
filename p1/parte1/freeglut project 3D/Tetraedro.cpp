@@ -63,6 +63,7 @@ Tetraedro::~Tetraedro() {
 }
 
 void Tetraedro::dibuja() {
+	glMatrixMode(GL_MODELVIEW);
 	for (int i = 0; i<numeroCaras; i++) {
 		glBegin(type);
 		if (i == 0 || i == 1) glColor3f(0.0f, 0.0f, 1.0f);

@@ -81,6 +81,7 @@ Revolucion::~Revolucion() {
 }
 
 void Revolucion::dibuja() {
+	glMatrixMode(GL_MODELVIEW);
 	glColor3f(0.0f, 0.0f, 1.0f);
 	for (int i = 0; i<numeroCaras; i++) {
 		if (i * 2 +1> numeroCaras){

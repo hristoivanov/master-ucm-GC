@@ -92,7 +92,8 @@ Cubo::~Cubo() {
     delete[] cara;
 }
 
-void Cubo::dibuja() {	 	 	 
+void Cubo::dibuja() {
+	glMatrixMode(GL_MODELVIEW);
 	for (int i=0; i<numeroCaras; i++) {		
 		glBegin(GL_POLYGON);
 		glColor3f(colorX, colorY, colorZ);
