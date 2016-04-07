@@ -174,8 +174,8 @@ void key(unsigned char key, int x, int y){
 		case 'x': angY=angY-5; break;
 		case 'd': angZ=angZ+5; break;
 		case 'c': angZ=angZ-5; break;
-		case 'f': e5->avanza(0.1); break;
-		case 'v': e5->avanza(-0.1); break;
+		case 'f': e5->avanza(0.1f); break;
+		case 'v': e5->avanza(-0.1f); break;
 		default:
 			  need_redisplay = false;
 			  break;

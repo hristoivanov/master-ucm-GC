@@ -14,9 +14,9 @@ private:
 	float a;
 	float b;
 	float c;
-	PuntoVector3D* Extrusion::vectC(double t);
-	PuntoVector3D* Extrusion::vectT(double t);
-	PuntoVector3D* Extrusion::vectB(double t);
+	PuntoVector3D* Extrusion::vectC(GLfloat t);
+	PuntoVector3D* Extrusion::vectT(GLfloat t);
+	PuntoVector3D* Extrusion::vectB(GLfloat t);
 	PuntoVector3D* Extrusion::vectN(PuntoVector3D* T, PuntoVector3D* B);
 };
 #endif

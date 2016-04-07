@@ -1,7 +1,6 @@
 #include <Windows.h>
 #include <gl/GL.h>
 #include <gl/GLU.h>
-#include "Tetraedro.h"
 #include "Extrusion.h"
 #include <GL/freeglut.h>
 //#include <GL/glut.h>

@@ -5,13 +5,13 @@ Extrusion::Extrusion(int nP, int nQ) {
 	a = 7;
 	b = 4;
 	c = 2;
-	double radio = .5;
+	GLfloat radio = .5f;
 
 	PuntoVector3D** perfil = new PuntoVector3D*[nP];
 	for (int i = 0; i < nP; i++){
-		double theta = i * 3.14 * 2.0 / (double)nP;
-		double c = cos(theta);
-		double s = sin(theta);
+		GLfloat theta = i * 3.14f * 2.0f / (GLfloat)nP;
+		GLfloat c = cos(theta);
+		GLfloat s = sin(theta);
 
 		perfil[i] = new PuntoVector3D(c*radio, s*radio, 0.0f, 1);
 	}
@@ -26,7 +26,7 @@ Extrusion::Extrusion(int nP, int nQ) {
 	cara = new Cara*[numeroCaras];
 
 	for (int i = 0; i < nQ; i++){ //generar el perfil i-ésimo
-		double t = (8 * 3.14 * i) / nQ;
+		GLfloat t = (8.0f * 3.14f * i) / nQ;
 		PuntoVector3D* C = vectC(t);
 		PuntoVector3D* T = vectT(t);
 		PuntoVector3D* B = vectB(t);
@@ -35,9 +35,9 @@ Extrusion::Extrusion(int nP, int nQ) {
 		for (int j = 0; j<nP; j++) {
 			int indice = i*nP + j;
 			//Transformar el punto j-ésimo del perfil original
-			double x = N->getX() * perfil[j]->getX() + B->getX() * perfil[j]->getY() + T->getX() * perfil[j]->getZ() + C->getX();
-			double y = N->getY() * perfil[j]->getX() + B->getY() * perfil[j]->getY() + T->getY() * perfil[j]->getZ() + C->getY();
-			double z = N->getZ() * perfil[j]->getX() + B->getZ() * perfil[j]->getY() + T->getZ() * perfil[j]->getZ() + C->getZ();
+			GLfloat x = N->getX() * perfil[j]->getX() + B->getX() * perfil[j]->getY() + T->getX() * perfil[j]->getZ() + C->getX();
+			GLfloat y = N->getY() * perfil[j]->getX() + B->getY() * perfil[j]->getY() + T->getY() * perfil[j]->getZ() + C->getY();
+			GLfloat z = N->getZ() * perfil[j]->getX() + B->getZ() * perfil[j]->getY() + T->getZ() * perfil[j]->getZ() + C->getZ();
 			PuntoVector3D* p = new PuntoVector3D(x, y, z, 1);
 			vertice[indice] = p;
 		} //for
@@ -68,7 +68,7 @@ Extrusion::Extrusion(int nP, int nQ) {
 	} //for
 }
 
-PuntoVector3D* Extrusion::vectC(double t) {
+PuntoVector3D* Extrusion::vectC(GLfloat t) {
 	PuntoVector3D* aux = new PuntoVector3D(
 		(a - b) * cos(t) + c * cos(((a - b) / b) * t),
 		0.0f,
@@ -78,7 +78,7 @@ PuntoVector3D* Extrusion::vectC(double t) {
 	return aux;
 }
 
-PuntoVector3D* Extrusion::vectT(double t) {
+PuntoVector3D* Extrusion::vectT(GLfloat t) {
 	PuntoVector3D* aux = new PuntoVector3D(
 			-(a - b) * sin(t) - c * sin(((a - b) / b) * t) * ((a - b) / b),
 			0.0f,
@@ -89,7 +89,7 @@ PuntoVector3D* Extrusion::vectT(double t) {
 	return aux;
 }
 
-PuntoVector3D* Extrusion::vectB(double t) {
+PuntoVector3D* Extrusion::vectB(GLfloat t) {
 	PuntoVector3D* c1 = new PuntoVector3D(
 		-(a - b) * sin(t) - c * sin(((a - b) / b) * t) * ((a - b) / b),
 		0.0f,

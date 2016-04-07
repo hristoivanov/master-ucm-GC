@@ -2,7 +2,6 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 #include "Revolucion.h"
-#include "Tetraedro.h"
 #include <GL/freeglut.h>
 #include "Iman.h"
 //#include <GL/glut.h>
