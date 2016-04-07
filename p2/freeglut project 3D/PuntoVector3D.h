@@ -20,6 +20,7 @@ class PuntoVector3D {
         void escalar(GLfloat factor);
         void normalizar();
         void sumar(PuntoVector3D* pv);
+		void restar(PuntoVector3D* pv);
         PuntoVector3D* clonar();
         GLfloat productoEscalar(PuntoVector3D* vector);
         PuntoVector3D* productoVectorial(PuntoVector3D* vector);

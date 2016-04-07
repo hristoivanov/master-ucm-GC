@@ -6,6 +6,7 @@
 #include "Roble.h"
 #include "Abeto.h"
 #include "Alamo.h"
+#include "Camara.h"
 #include <GL/freeglut.h>
 //#include <GL/glut.h>
 
@@ -34,6 +35,7 @@ Roble *e2;
 Pino *e3;
 Alamo *e4;
 Coche *e5;
+Camara *c1;
 
 void buildSceneObjects() {	 
     angX=0.0f;
@@ -76,15 +78,7 @@ void initGL() {
 	GLfloat p[]={25.0f, 25.0f, 25.0f, 1.0f};	 
 	glLightfv(GL_LIGHT0, GL_POSITION, p);
 
-	// Camera set up
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	gluLookAt(eyeX, eyeY, eyeZ, lookX, lookY, lookZ, upX, upY, upZ);
-
-	// Frustum set up
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();     
-	glOrtho(xLeft, xRight, yBot, yTop, N, F);
+	c1 = new Camara();
 
 	// Viewport set up
 	glViewport(0, 0, WIDTH, HEIGHT);  	
@@ -176,6 +170,13 @@ void key(unsigned char key, int x, int y){
 		case 'c': angZ=angZ-5; break;
 		case 'f': e5->avanza(0.1f); break;
 		case 'v': e5->avanza(-0.1f); break;
+		case '1': c1->giraX(); break;
+		case '2': c1->giraY(); break;
+		case '3': c1->giraZ(); break;
+		case '4': c1->lateral(); break;
+		case '5': c1->frontal(); break;
+		case '6': c1->cenital(); break;
+		case '7': c1->rincon(); break;
 		default:
 			  need_redisplay = false;
 			  break;

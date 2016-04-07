@@ -17,18 +17,32 @@ Camara::Camara() {
 
 void Camara::setView() {
 	//Define la matriz de vista con el comando gluLookAt()     
-	//TO DO	 
+	//TO DO
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(eye->getX(), eye->getY(), eye->getZ(), look->getX(), look->getY(), look->getZ(), up->getX(), up->getY(), up->getZ());
 }
 
 void Camara::setCameraCoordinateSystem() {
 	//Obtiene el valor de los vectores u, v, n  
-	//TO DO	 
+	//TO DO
+	n = eye->clonar();
+	n->sumar(look);
+	n->normalizar();
+	u = up->productoVectorial(n);
+	u->normalizar();
+	v = n->productoVectorial(u);
+
+	setModelViewMatrix();
 }
 
 void Camara::setProjection() {
 	//Define la matriz de proyección con el comando 
 	//glOrtho() o glFrustum()/gluPerspective()	 
 	//TO DO		 
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(left, right, bottom, top, Near, Far);
 }
 
 void Camara::setModelViewMatrix() {
@@ -43,7 +57,17 @@ void Camara::setModelViewMatrix() {
 
 void Camara::giraX() {
 	//Gira la cámara alrededor del eje X sobre un plano perpendicular a este eje
-	//TO DO	 
+	//TO DO
+	//calculamos el radio
+	GLdouble radio = sqrt((eye->getY() * eye->getY()) + (eye->getZ() * eye->getZ()));
+	//sacamos el angulo
+	GLdouble angulo = atan2(eye->getY(), eye->getZ());
+	//restamos 0.05 radianes
+	angulo -= 0.05;
+	//calculamos el nuevo Z
+	eye->setZ(cos(angulo) * radio);
+	//calculamos el nuevo Y
+	eye->setY(sin(angulo) * radio);
     setView();
     setCameraCoordinateSystem();     
 }
@@ -51,11 +75,37 @@ void Camara::giraX() {
 void Camara::giraY() {
 	//Gira la cámara alrededor del eje Y sobre un plano perpendicular a este eje
 	//TO DO
+	//calculamos el radio
+	GLdouble radio = sqrt((eye->getX() * eye->getX()) + (eye->getZ() * eye->getZ()));
+	//sacamos el angulo
+	GLdouble angulo = atan2(eye->getX(), eye->getZ());
+	//restamos 0.05 radianes
+	angulo -= 0.05;
+	//calculamos el nuevo Z
+	eye->setZ(cos(angulo) * radio);
+	//calculamos el nuevo X
+	eye->setX(sin(angulo) * radio);
+	//actualizamos la matriz de vista
+	setView();
+	setCameraCoordinateSystem();
 }
 
 void Camara::giraZ() {
 	//Gira la cámara alrededor del eje Z sobre un plano perpendicular a este eje
 	//TO DO
+	//calculamos el radio
+	GLdouble radio = sqrt((eye->getY() * eye->getY()) + (eye->getX() * eye->getX()));
+	//sacamos el angulo
+	GLdouble angulo = atan2(eye->getY(), eye->getX());
+	//sumamos 0.05 radianes
+	angulo += 0.05;
+	//calculamos el nuevo Z
+	eye->setX(cos(angulo) * radio);
+	//calculamos el nuevo X
+	eye->setY(sin(angulo) * radio);
+	//actualizamos la matriz de vista
+	setView();
+	setCameraCoordinateSystem();
 }
 
 void Camara::lateral() {
