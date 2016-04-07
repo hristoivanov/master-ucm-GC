@@ -73,7 +73,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Malla.cpp" />
     <ClCompile Include="PuntoVector3D.cpp" />
-    <ClCompile Include="Tetraedro.cpp" />
     <ClCompile Include="VerticeNormal.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -83,7 +82,6 @@
     <ClInclude Include="Revolucion.h" />
     <ClInclude Include="Malla.h" />
     <ClInclude Include="PuntoVector3D.h" />
-    <ClInclude Include="Tetraedro.h" />
     <ClInclude Include="VerticeNormal.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
