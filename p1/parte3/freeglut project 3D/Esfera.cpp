@@ -8,6 +8,7 @@ Esfera::Esfera(GLint meridianos, GLint paralelos) {
 }
 
 void Esfera::dibuja(){
+	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glTranslatef(posicion[0], posicion[1], posicion[2]);
 	glRotatef(rotacion[0], 1.0f, 0.0f, 0.0f);
