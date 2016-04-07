@@ -2,19 +2,17 @@
 #include <math.h>
 #include <iostream>
 
-Revolucion::Revolucion(GLfloat coorX,GLfloat coorY,GLfloat coorZ,GLfloat tamanho) {
+Revolucion::Revolucion(int nQ, GLfloat rInt, GLfloat rExt) {
 	int m = 4;
 	PuntoVector3D** perfil = new PuntoVector3D*[m];
-	perfil[0] = new PuntoVector3D(coorX			, coorY			, coorZ, 1);
-	perfil[1] = new PuntoVector3D(coorX+tamanho	, coorY			, coorZ, 1);
-	perfil[2] = new PuntoVector3D(coorX+tamanho	, coorY+tamanho	, coorZ, 1);
-	perfil[3] = new PuntoVector3D(coorX			, coorY+tamanho	, coorZ, 1);
-
-	int n = 20;
+	perfil[0] = new PuntoVector3D(rInt, 0.0f, 0.0f, 1);
+	perfil[1] = new PuntoVector3D(rExt, 0.0f, 0.0f, 1);
+	perfil[2] = new PuntoVector3D(rExt, rExt - rInt, 0.0f, 1);
+	perfil[3] = new PuntoVector3D(rInt, rExt - rInt, 0.0f, 1);
 
 	//Tamaños de los arrays
-	numeroVertices = (1+n)*m;
-	numeroCaras = n*m;
+	numeroVertices = (1 + nQ)*m;
+	numeroCaras = nQ*m;
 	numeroNormales = numeroCaras;
 
 	//Creación de los arrays
@@ -26,8 +24,8 @@ Revolucion::Revolucion(GLfloat coorX,GLfloat coorY,GLfloat coorZ,GLfloat tamanho
 	//for (int j = 0; j<m; j++) vertice[j] = perfil[j]->clonar();
 
 	//Vertices de la malla
-	for (int i = 0; i<n+1; i++){ //generar el perfil i-ésimo
-		GLfloat theta = i * 180.0f / (GLfloat)n;
+	for (int i = 0; i<nQ + 1; i++){ //generar el perfil i-ésimo
+		GLfloat theta = i * 180.0f / (GLfloat)nQ;
 		GLfloat c = cos(theta*3.14f/180.0f);
 		GLfloat s = sin(theta*3.14f/180.0f);
 		//R_y es la matriz de rotación sobre el eje Y
@@ -43,7 +41,7 @@ Revolucion::Revolucion(GLfloat coorX,GLfloat coorY,GLfloat coorZ,GLfloat tamanho
 
 	//Construcción de las caras
 	int indiceCara = 0;
-	for (int i = 0; i<n; i++){ //unir el perfil i-ésimo con el (i+1)%n-ésimo
+	for (int i = 0; i<nQ; i++){ //unir el perfil i-ésimo con el (i+1)%n-ésimo
 		for (int j = 0; j<m; j++) { //esquina inferior-izquierda de una cara
 			// indiceCara = i*(m-1) + j;
 			int indice = i*m + j;

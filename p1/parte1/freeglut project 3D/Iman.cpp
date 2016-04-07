@@ -5,7 +5,7 @@ Iman::Iman(GLfloat coorX,GLfloat coorY,GLfloat coorZ,GLfloat tamanho) {
 	cubos = new Cubo*[numCubos]; 
 
 	//Revolucion
-	rev = new Revolucion(coorX,coorY,coorZ,tamanho);
+	rev = new Revolucion(20, coorX, coorX+tamanho);
 	//Cubos
 	cubos[0] = new Cubo(coorX			,coorY	,coorZ			,tamanho,0.0f		, 0.0f		, 1.0f		);
 	cubos[1] = new Cubo(coorX			,coorY	,coorZ+tamanho	,tamanho,0.752941f	, 0.752941f	, 0.752941f	);
