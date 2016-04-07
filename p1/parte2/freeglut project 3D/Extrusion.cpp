@@ -2,6 +2,7 @@
 #include <math.h>
 
 Extrusion::Extrusion(int nP, int nQ) {
+	type = GL_POLYGON;
 	a = 7;
 	b = 4;
 	c = 2;
@@ -129,7 +130,7 @@ void Extrusion::dibuja() {
 	glMatrixMode(GL_MODELVIEW);
 	glColor3f(0.0f, 1.0f, 0.0f);
 	for (int i = 0; i<numeroCaras; i++) {
-		glBegin(GL_POLYGON);
+		glBegin(type);
 		for (int j = 0; j<cara[i]->getNumeroVertices(); j++) {
 			int iN = cara[i]->getIndiceNormalK(j);
 			int iV = cara[i]->getIndiceVerticeK(j);
@@ -138,6 +139,10 @@ void Extrusion::dibuja() {
 		}
 		glEnd();
 	}
+}
+
+void Extrusion::CambiaEstilo(GLenum type){
+	this->type = type;;
 }
 
 

@@ -151,6 +151,8 @@ void key(unsigned char key, int x, int y){
 		case 'x': angY=angY-5; break;
 		case 'd': angZ=angZ+5; break;
 		case 'c': angZ=angZ-5; break;
+		case 'g': t1->CambiaEstilo(GL_LINE_LOOP); break;
+		case 'h': t1->CambiaEstilo(GL_POLYGON); break;
 		default:
 			need_redisplay = false;
 			break;

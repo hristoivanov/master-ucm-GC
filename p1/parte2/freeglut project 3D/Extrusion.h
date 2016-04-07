@@ -9,8 +9,10 @@ public:
 	Extrusion(int nP, int nQ);
 	~Extrusion();
 	void dibuja();
+	void CambiaEstilo(GLenum type);
 
 private:
+	GLenum type;
 	float a;
 	float b;
 	float c;
