@@ -13,7 +13,7 @@ using namespace std;
 // Flag telling us to keep processing events
 // bool continue_in_main_loop= true; //(**)
 
-Iman* iman = new Iman(3.0f,0.0f,0.0f,3.0f);//El angulo NO esta ajustado para cambiarlo
+Iman* iman = new Iman(20, 3.0f, 7.0f);//El angulo NO esta ajustado para cambiarlo
 
 // Viewport size
 int WIDTH= 500, HEIGHT= 500;

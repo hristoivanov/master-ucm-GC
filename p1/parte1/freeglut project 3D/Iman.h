@@ -9,7 +9,7 @@ private:
 	Revolucion* rev;
 	int numCubos;
 public:
-	Iman(GLfloat coorX,GLfloat coorY,GLfloat coorZ,GLfloat tamanho);
+	Iman(int nQ, GLfloat rInt, GLfloat rExt);
 	~Iman();
 	void dibuja();
 };

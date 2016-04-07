@@ -1,16 +1,16 @@
 #include "Iman.h"
 
-Iman::Iman(GLfloat coorX,GLfloat coorY,GLfloat coorZ,GLfloat tamanho) {
+Iman::Iman(int nQ, GLfloat rInt, GLfloat rExt) {
 	numCubos = 4;
 	cubos = new Cubo*[numCubos]; 
 
 	//Revolucion
-	rev = new Revolucion(20, coorX, coorX+tamanho);
+	rev = new Revolucion(nQ, rInt, rExt);
 	//Cubos
-	cubos[0] = new Cubo(coorX			,coorY	,coorZ			,tamanho,0.0f		, 0.0f		, 1.0f		);
-	cubos[1] = new Cubo(coorX			,coorY	,coorZ+tamanho	,tamanho,0.752941f	, 0.752941f	, 0.752941f	);
-	cubos[2] = new Cubo(-coorX-tamanho	,coorY	,coorZ			,tamanho,1.0f		, 0.0f		, 0.0f		);
-	cubos[3] = new Cubo(-coorX-tamanho	,coorY	,coorZ+tamanho	,tamanho,0.752941f	, 0.752941f	, 0.752941f	);
+	cubos[0] = new Cubo(rInt, 0.0f, 0.0f, rExt - rInt, 0.0f, 0.0f, 1.0f);
+	cubos[1] = new Cubo(rInt, 0.0f, rExt - rInt, rExt - rInt, 0.752941f, 0.752941f, 0.752941f);
+	cubos[2] = new Cubo(-rExt, 0.0f, 0.0f, rExt - rInt, 1.0f, 0.0f, 0.0f);
+	cubos[3] = new Cubo(-rExt, 0.0f, rExt - rInt, rExt - rInt, 0.752941f, 0.752941f, 0.752941f);
 }
 
 Iman::~Iman() {
