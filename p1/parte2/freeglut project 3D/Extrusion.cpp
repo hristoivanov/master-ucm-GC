@@ -126,6 +126,7 @@ Extrusion::~Extrusion() {
 }
 
 void Extrusion::dibuja() {
+	glMatrixMode(GL_MODELVIEW);
 	glColor3f(0.0f, 1.0f, 0.0f);
 	for (int i = 0; i<numeroCaras; i++) {
 		glBegin(GL_POLYGON);

@@ -38,7 +38,8 @@ int Malla::getNumeroCaras() {
     return numeroCaras;
 }
 
-void Malla::dibuja() {	 	 
+void Malla::dibuja() {
+	glMatrixMode(GL_MODELVIEW);
 	for (int i=0; i<numeroCaras; i++) {		
 		glBegin(GL_POLYGON);			 
 		for (int j=0; j<cara[i]->getNumeroVertices(); j++) {
