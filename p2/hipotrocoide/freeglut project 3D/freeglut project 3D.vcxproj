@@ -66,39 +66,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Abeto.cpp" />
-    <ClCompile Include="Alamo.cpp" />
     <ClCompile Include="Camara.cpp" />
-    <ClCompile Include="Cilindro.cpp" />
-    <ClCompile Include="Coche.cpp" />
-    <ClCompile Include="Color.cpp" />
-    <ClCompile Include="Conjunto.cpp" />
-    <ClCompile Include="Cubo.cpp" />
-    <ClCompile Include="Disco.cpp" />
-    <ClCompile Include="Elemento.cpp" />
-    <ClCompile Include="Esfera.cpp" />
+    <ClCompile Include="Cara.cpp" />
+    <ClCompile Include="Extrusion.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Pino.cpp" />
+    <ClCompile Include="Malla.cpp" />
     <ClCompile Include="PuntoVector3D.cpp" />
-    <ClCompile Include="Roble.cpp" />
-    <ClCompile Include="Rueda.cpp" />
+    <ClCompile Include="VerticeNormal.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Abeto.h" />
-    <ClInclude Include="Alamo.h" />
     <ClInclude Include="Camara.h" />
-    <ClInclude Include="Cilindro.h" />
-    <ClInclude Include="Coche.h" />
-    <ClInclude Include="Color.h" />
-    <ClInclude Include="Conjunto.h" />
-    <ClInclude Include="Cubo.h" />
-    <ClInclude Include="Disco.h" />
-    <ClInclude Include="Elemento.h" />
-    <ClInclude Include="Esfera.h" />
-    <ClInclude Include="Pino.h" />
+    <ClInclude Include="Cara.h" />
+    <ClInclude Include="Extrusion.h" />
+    <ClInclude Include="Malla.h" />
     <ClInclude Include="PuntoVector3D.h" />
-    <ClInclude Include="Roble.h" />
-    <ClInclude Include="Rueda.h" />
+    <ClInclude Include="VerticeNormal.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

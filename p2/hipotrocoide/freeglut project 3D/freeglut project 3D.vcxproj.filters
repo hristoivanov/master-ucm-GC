@@ -18,96 +18,42 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Abeto.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Alamo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Camara.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Cilindro.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Coche.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Color.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Conjunto.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Cubo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Disco.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Elemento.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Esfera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Pino.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Roble.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rueda.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PuntoVector3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Extrusion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Malla.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cara.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VerticeNormal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Abeto.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Alamo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Camara.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Cilindro.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Coche.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Conjunto.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cubo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Disco.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Elemento.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Esfera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Pino.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Roble.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rueda.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PuntoVector3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extrusion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Malla.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cara.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VerticeNormal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

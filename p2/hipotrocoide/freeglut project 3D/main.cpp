@@ -1,12 +1,8 @@
 #include <Windows.h>
 #include <gl/GL.h>
 #include <gl/GLU.h>
-#include "Coche.h" 
-#include "Pino.h"
-#include "Roble.h"
-#include "Abeto.h"
-#include "Alamo.h"
 #include "Camara.h"
+#include "Extrusion.h"
 #include <GL/freeglut.h>
 //#include <GL/glut.h>
 
@@ -30,29 +26,15 @@ GLdouble upX=0, upY=1, upZ=0;
 
 // Scene variables
 GLfloat angX, angY, angZ; 
-Abeto *e1;
-Roble *e2;
-Pino *e3;
-Alamo *e4;
-Coche *e5;
 Camara *c1;
+Extrusion *t1;
 
 void buildSceneObjects() {	 
     angX=0.0f;
     angY=0.0f;
     angZ=0.0f;	
 
-	e1 = new Abeto();
-	e1->setPosicion(-12, 0.0, -5);
-	e2 = new Roble();
-	e2->setPosicion(-4, 0.0, -5);
-	e3 = new Pino();
-	e3->setPosicion(4, 0.0, -5);
-	e4 = new Alamo();
-	e4->setPosicion(12, 0.0, -5);
-
-
-	e5 = new Coche();
+	t1 = new Extrusion(10, 200);
 }
 
 void initGL() {	 		 
@@ -111,12 +93,7 @@ void display(void) {
 		glVertex3f(0, 0, 20);	     
 	glEnd();
 
-	e1->dibuja();
-	e2->dibuja();
-	e3->dibuja();
-	e4->dibuja();
-
-	e5->dibuja();
+	t1->dibuja();
 
 	// Drawing the scene	 		 
 	glColor3f(1.0, 1.0, 1.0);
@@ -168,8 +145,6 @@ void key(unsigned char key, int x, int y){
 		case 'x': angY=angY-5; break;
 		case 'd': angZ=angZ+5; break;
 		case 'c': angZ=angZ-5; break;
-		case 'f': e5->avanza(0.1f); break;
-		case 'v': e5->avanza(-0.1f); break;
 		case '1': c1->giraX(); break;
 		case '2': c1->giraY(); break;
 		case '3': c1->giraZ(); break;
@@ -180,6 +155,8 @@ void key(unsigned char key, int x, int y){
 		case 'u': c1->roll(0.9f); break;
 		case 'i': c1->yaw(0.9f); break;
 		case 'o': c1->pitch(0.9f); break;
+		case 'g': t1->CambiaEstilo(GL_LINE_LOOP); break;
+		case 'h': t1->CambiaEstilo(GL_POLYGON); break;
 		default:
 			  need_redisplay = false;
 			  break;
