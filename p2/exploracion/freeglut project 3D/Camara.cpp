@@ -27,7 +27,7 @@ void Camara::setCameraCoordinateSystem() {
 	//Obtiene el valor de los vectores u, v, n  
 	//TO DO
 	n = eye->clonar();
-	n->sumar(look);
+	n->restar(look);
 	n->normalizar();
 	u = up->productoVectorial(n);
 	u->normalizar();

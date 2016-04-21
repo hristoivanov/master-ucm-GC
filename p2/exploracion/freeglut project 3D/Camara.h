@@ -12,9 +12,10 @@ class Camara {
 
 		void setView();	
 		void setCameraCoordinateSystem();
-        void setModelViewMatrix();
+        //void setModelViewMatrix();
 
-	public:				
+	public:
+		void setModelViewMatrix();
 		Camara();		 
                                                                      
         void giraX();

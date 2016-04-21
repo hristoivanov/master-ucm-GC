@@ -22,6 +22,8 @@ int WIDTH= 500, HEIGHT= 500;
 
 // Viewing frustum parameters
 GLdouble xRight=10, xLeft=-xRight, yTop=10, yBot=-yTop, N=1, F=1000;
+bool baldosas = true;
+int nCol = 2;
 
 // Camera parameters
 GLdouble eyeX=100.0, eyeY=100.0, eyeZ=100.0;
@@ -35,7 +37,10 @@ Roble *e2;
 Pino *e3;
 Alamo *e4;
 Coche *e5;
+Camara *c0;
 Camara *c1;
+Camara *c2;
+Camara *c3;
 
 void buildSceneObjects() {	 
     angX=0.0f;
@@ -77,37 +82,42 @@ void initGL() {
 	GLfloat p[]={25.0f, 25.0f, 25.0f, 1.0f};	 
 	glLightfv(GL_LIGHT0, GL_POSITION, p);
 
+	c0 = new Camara();
+	c0->lateral();
 	c1 = new Camara();
+	c1->frontal();
+	c2 = new Camara();
+	c2->cenital();
+	c3 = new Camara();
+	c3->rincon();
 
 	// Viewport set up
 	glViewport(0, 0, WIDTH, HEIGHT);  	
 }
 
-void display(void) {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
-
-	glMatrixMode(GL_MODELVIEW);	 
+void drawScene(void){
+	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
-	
+
 	// Rotating the scene
 	glRotatef(angX, 1.0f, 0.0f, 0.0f);
 	glRotatef(angY, 0.0f, 1.0f, 0.0f);
 	glRotatef(angZ, 0.0f, 0.0f, 1.0f);
-		
+
 	glLineWidth(1.5f);
 	// Drawing axes
-	glBegin( GL_LINES );			
-		glColor3f(1.0,0.0,0.0); 
-		glVertex3f(0, 0, 0);
-		glVertex3f(20, 0, 0);	     
+	glBegin(GL_LINES);
+	glColor3f(1.0, 0.0, 0.0);
+	glVertex3f(0, 0, 0);
+	glVertex3f(20, 0, 0);
 
-		glColor3f(0.0,1.0,0.0); 
-		glVertex3f(0, 0, 0);
-		glVertex3f(0, 20, 0);	 
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex3f(0, 0, 0);
+	glVertex3f(0, 20, 0);
 
-		glColor3f(0.0,0.0,1.0); 
-		glVertex3f(0, 0, 0);
-		glVertex3f(0, 0, 20);	     
+	glColor3f(0.0, 0.0, 1.0);
+	glVertex3f(0, 0, 0);
+	glVertex3f(0, 0, 20);
 	glEnd();
 
 	e1->dibuja();
@@ -120,11 +130,38 @@ void display(void) {
 	// Drawing the scene	 		 
 	glColor3f(1.0, 1.0, 1.0);
 	glPopMatrix();
+}
+
+void embaldosar(int nCol){
+	GLdouble SVAratio = (xRight - xLeft) / (yTop - yBot);
+	GLdouble w = (GLdouble)WIDTH / (GLdouble)nCol;
+	GLdouble h = w / SVAratio;
+
+	int count_aux = 0;
+	for (GLint c = 0; c<nCol; c++){
+		GLdouble currentH = 0;
+		while ((currentH + h) <= HEIGHT){
+			glViewport((GLint)(c*w), (GLint)currentH, (GLint)w, (GLint)h);
+			if (count_aux == 0) c0->setModelViewMatrix();
+			if (count_aux == 1) c1->setModelViewMatrix();
+			if (count_aux == 2) c2->setModelViewMatrix();
+			if (count_aux == 3) c3->setModelViewMatrix();
+			drawScene(); //dibujar la escena
+			currentH += h;
+			count_aux += 1;
+		}
+	}
+}
+
+void display(void) {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	if (baldosas) embaldosar(nCol);
+	else drawScene();
 
 	glFlush();
 	glutSwapBuffers();
 }
-
 
 void resize(int newWidth, int newHeight) {
 	WIDTH= newWidth;
