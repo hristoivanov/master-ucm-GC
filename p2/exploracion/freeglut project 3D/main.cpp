@@ -51,7 +51,6 @@ void buildSceneObjects() {
 	e4 = new Alamo();
 	e4->setPosicion(12, 0.0, -5);
 
-
 	e5 = new Coche();
 }
 
