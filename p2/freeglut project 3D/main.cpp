@@ -177,6 +177,9 @@ void key(unsigned char key, int x, int y){
 		case '5': c1->frontal(); break;
 		case '6': c1->cenital(); break;
 		case '7': c1->rincon(); break;
+		case 'u': c1->roll(0.9f); break;
+		case 'i': c1->yaw(0.9f); break;
+		case 'o': c1->pitch(0.9f); break;
 		default:
 			  need_redisplay = false;
 			  break;

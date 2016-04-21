@@ -109,39 +109,93 @@ void Camara::giraZ() {
 }
 
 void Camara::lateral() {
-	//Coloca la cámara de forma que se muestra una visión lateral 
-	//de la escena (desde el eje X) 
-	//TO DO
+	up->setX(0);
+	up->setY(1);
+	GLdouble radio = sqrt(+(eye->getX() * eye->getX()) + (eye->getY() * eye->getY()) + (eye->getZ() * eye->getZ()));
+	eye->setX(radio);
+	eye->setY(0.0f);
+	eye->setZ(0.0f);
+	setView();
+	setCameraCoordinateSystem();
 }
 
 void Camara::frontal() {
-	//Coloca la cámara de forma que se muestra una visión frontal 
-	//de la escena (desde el eje Z)  
-	//TO DO
+	up->setX(0);
+	up->setY(1);
+	GLdouble radio = sqrt(+(eye->getX() * eye->getX()) + (eye->getY() * eye->getY()) + (eye->getZ() * eye->getZ()));
+	eye->setZ(radio);
+	eye->setX(0.0f);
+	eye->setY(0.0f);
+	setView();
+	setCameraCoordinateSystem();
 }
 
 void Camara::cenital() {
-    //Coloca la cámara de forma que se muestra una visión cenital 
-	//de la escena (desde el eje Y) 
-	//TO DO
+	up->setX(1);
+	up->setY(0);
+	GLdouble radio = sqrt(+(eye->getX() * eye->getX()) + (eye->getY() * eye->getY()) + (eye->getZ() * eye->getZ()));
+	eye->setY(radio);
+	eye->setX(0.0f);
+	eye->setZ(0.0f);
+	setView();
+	setCameraCoordinateSystem();
 }
 
 void Camara::rincon() {
-    //Coloca la cámara de forma que se muestra
-	//la escena en un rincón
-	//TO DO
+	up->setX(0);
+	up->setY(1);
+	GLdouble radio = sqrt(+(eye->getX() * eye->getX()) + (eye->getY() * eye->getY()) + (eye->getZ() * eye->getZ()));
+	GLdouble aux = sqrt((radio*radio)/3.0f);
+	eye->setX(aux);
+	eye->setY(aux);
+	eye->setZ(aux);
+	setView();
+	setCameraCoordinateSystem();
 }
- 
+
 void Camara::roll(float ang) {
 	//Rota la cámara tal como se explica en las transparencias
-	//TO DO	 
+	//TO DO
+	GLdouble cs = cos(ang / 180.0f * 3.1415f);
+	GLdouble sn = sin(ang / 180.0f * 3.1415f);
+	v->setX(cs*v->getX() - sn*u->getX());
+	v->setY(cs*v->getY() - sn*u->getY());
+	v->setZ(cs*v->getZ() - sn*u->getZ());
+	v->normalizar();
+	u->setX(cs*u->getX() + sn*v->getX());
+	u->setY(cs*u->getY() + sn*v->getY());
+	u->setZ(cs*u->getZ() + sn*v->getZ());
+	u->normalizar();
+
     setModelViewMatrix();
 }
 
 void Camara::pitch(float ang) {		
-    //TO DO
+	GLdouble cs = cos(ang / 180.0f * 3.1415f);
+	GLdouble sn = sin(ang / 180.0f * 3.1415f);
+	v->setX(cs*v->getX() + sn*n->getX());
+	v->setY(cs*v->getY() + sn*n->getY());
+	v->setZ(cs*v->getZ() + sn*n->getZ());
+	v->normalizar();
+	n->setX(cs*n->getX() - sn*v->getX());
+	n->setY(cs*n->getY() - sn*v->getY());
+	n->setZ(cs*n->getZ() - sn*v->getZ());
+	n->normalizar();
+
+	setModelViewMatrix();
 }
 
 void Camara::yaw(float ang) {		
-    //TO DO
+	GLdouble cs = cos(ang / 180.0f * 3.1415f);
+	GLdouble sn = sin(ang / 180.0f * 3.1415f);
+	u->setX(cs*u->getX() - sn*n->getX());
+	u->setY(cs*u->getY() - sn*n->getY());
+	u->setZ(cs*u->getZ() - sn*n->getZ());
+	v->normalizar();
+	n->setX(cs*n->getX() + sn*u->getX());
+	n->setY(cs*n->getY() + sn*u->getY());
+	n->setZ(cs*n->getZ() + sn*u->getZ());
+	n->normalizar();
+
+	setModelViewMatrix();
 }
