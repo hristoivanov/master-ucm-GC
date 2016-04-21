@@ -10,6 +10,7 @@ public:
 	~Extrusion();
 	void dibuja();
 	void CambiaEstilo(GLenum type);
+	PuntoVector3D* Extrusion::getPositionCamara(GLfloat t);
 
 private:
 	GLenum type;

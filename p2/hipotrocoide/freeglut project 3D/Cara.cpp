@@ -23,6 +23,3 @@ int Cara::getIndiceVerticeK(int k) {
 int Cara::getIndiceNormalK(int k) {
     return arrayVerticeNormal[k]->getIN();
 }
-
- 
-

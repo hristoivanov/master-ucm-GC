@@ -17,7 +17,7 @@ using namespace std;
 int WIDTH= 500, HEIGHT= 500;
 
 // Viewing frustum parameters
-GLdouble xRight=10, xLeft=-xRight, yTop=10, yBot=-yTop, N=1, F=1000;
+GLdouble xRight = 2.0f, xLeft = -xRight, yTop = 2.0f, yBot = -yTop, N = 0, F = 1000;
 
 // Camera parameters
 GLdouble eyeX=100.0, eyeY=100.0, eyeZ=100.0;
@@ -34,7 +34,7 @@ void buildSceneObjects() {
     angY=0.0f;
     angZ=0.0f;	
 
-	t1 = new Extrusion(10, 200);
+	t1 = new Extrusion(10, 5000);
 }
 
 void initGL() {	 		 
@@ -61,6 +61,7 @@ void initGL() {
 	glLightfv(GL_LIGHT0, GL_POSITION, p);
 
 	c1 = new Camara();
+	c1->setExtrusion(t1);
 
 	// Viewport set up
 	glViewport(0, 0, WIDTH, HEIGHT);  	
@@ -157,6 +158,7 @@ void key(unsigned char key, int x, int y){
 		case 'o': c1->pitch(0.9f); break;
 		case 'g': t1->CambiaEstilo(GL_LINE_LOOP); break;
 		case 'h': t1->CambiaEstilo(GL_POLYGON); break;
+		case ' ': c1->moveExtrusion(0.1f); break;
 		default:
 			  need_redisplay = false;
 			  break;

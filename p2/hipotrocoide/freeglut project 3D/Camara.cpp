@@ -3,12 +3,14 @@
 
 Camara::Camara() {           
 	eye=new PuntoVector3D(30, 30, 30, 1);
-    look=new PuntoVector3D(0, 0, 0, 1);
+    look=new PuntoVector3D(0, 1, 0, 1);
     up=new PuntoVector3D(0, 1, 0, 0);
        
     left=-10; right=-left; bottom=-10; top=-bottom; 
-	Near=1; Far=1000;
+	Near=0.0f; Far=1000;
 	fovy=5; aspect=2.5; 
+
+	posExtrusion = 0.0f;
 	  
 	setView();  
 	setProjection();
@@ -27,7 +29,7 @@ void Camara::setCameraCoordinateSystem() {
 	//Obtiene el valor de los vectores u, v, n  
 	//TO DO
 	n = eye->clonar();
-	n->sumar(look);
+	n->restar(look);
 	n->normalizar();
 	u = up->productoVectorial(n);
 	u->normalizar();
@@ -198,4 +200,19 @@ void Camara::yaw(float ang) {
 	n->normalizar();
 
 	setModelViewMatrix();
+}
+
+void Camara::setExtrusion(Extrusion* t1){
+	this->t1 = t1;
+}
+
+void Camara::moveExtrusion(GLfloat inc){
+	this->posExtrusion = this->posExtrusion + inc;
+   	PuntoVector3D* aux = this->t1->getPositionCamara(this->posExtrusion);
+	eye = aux;
+	aux = this->t1->getPositionCamara(this->posExtrusion + inc);
+	look = aux;
+	eye->setY(2.0f);
+	setView();
+	setCameraCoordinateSystem();
 }
