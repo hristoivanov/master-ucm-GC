@@ -6,8 +6,7 @@
  
 class Camara {
 	private:
-		PuntoVector3D *eye, *up, *look, *u, *v, *n;				
-        GLfloat left, right, bottom, top, Near, Far;                
+		PuntoVector3D *eye, *up, *look, *u, *v, *n;               
         GLdouble fovy, aspect; 		 
 
 		void setView();	
@@ -15,6 +14,7 @@ class Camara {
         //void setModelViewMatrix();
 
 	public:
+		GLfloat left, right, bottom, top, Near, Far;
 		void setModelViewMatrix();
 		Camara();		 
                                                                      

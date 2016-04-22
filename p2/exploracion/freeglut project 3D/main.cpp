@@ -153,6 +153,12 @@ void embaldosar(int nCol){
 	}
 }
 
+void desembaldosar(void){
+	glViewport(0, 0, WIDTH, HEIGHT);
+	c3->setModelViewMatrix();
+	baldosas = false;
+}
+
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -206,16 +212,32 @@ void key(unsigned char key, int x, int y){
 		case 'c': angZ=angZ-5; break;
 		case 'f': e5->avanza(0.1f); break;
 		case 'v': e5->avanza(-0.1f); break;
-		case '1': c1->giraX(); break;
-		case '2': c1->giraY(); break;
-		case '3': c1->giraZ(); break;
-		case '4': c1->lateral(); break;
-		case '5': c1->frontal(); break;
-		case '6': c1->cenital(); break;
-		case '7': c1->rincon(); break;
-		case 'u': c1->roll(0.9f); break;
-		case 'i': c1->yaw(0.9f); break;
-		case 'o': c1->pitch(0.9f); break;
+		case '1': c3->giraX(); break;
+		case '2': c3->giraY(); break;
+		case '3': c3->giraZ(); break;
+		case '4': c3->lateral(); break;
+		case '5': c3->frontal(); break;
+		case '6': c3->cenital(); break;
+		case '7': c3->rincon(); break; baldosas = false;
+		case '8': baldosas = true; break;
+		case '9': baldosas = false; desembaldosar(); break;
+		case 'u': c3->roll(0.9f); break;
+		case 'i': c3->yaw(0.9f); break;
+		case 'o': c3->pitch(0.9f); break;
+		case 'e': 
+			c0->right *= .95f; c0->left *= .95f; c0->top *= .95f; c0->bottom *= .95f;
+			c1->right *= .95f; c1->left *= .95f; c1->top *= .95f; c1->bottom *= .95f;
+			c2->right *= .95f; c2->left *= .95f; c2->top *= .95f; c2->bottom *= .95f;
+			c3->right *= .95f; c3->left *= .95f; c3->top *= .95f; c3->bottom *= .95f;
+			c0->setProjection(); c1->setProjection(); c2->setProjection(); c3->setProjection();
+			break;
+		case 'h':
+			c0->right *= 1.05f; c0->left *= 1.05f; c0->top *= 1.05f; c0->bottom *= 1.05f;
+			c1->right *= 1.05f; c1->left *= 1.05f; c1->top *= 1.05f; c1->bottom *= 1.05f;
+			c2->right *= 1.05f; c2->left *= 1.05f; c2->top *= 1.05f; c2->bottom *= 1.05f;
+			c3->right *= 1.05f; c3->left *= 1.05f; c3->top *= 1.05f; c3->bottom *= 1.05f;
+			c0->setProjection(); c1->setProjection(); c2->setProjection(); c3->setProjection();
+			break;
 		default:
 			  need_redisplay = false;
 			  break;
