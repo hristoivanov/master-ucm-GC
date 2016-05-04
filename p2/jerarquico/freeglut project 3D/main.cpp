@@ -6,6 +6,7 @@
 #include "Roble.h"
 #include "Abeto.h"
 #include "Alamo.h"
+#include "Esfera.h"
 #include <GL/freeglut.h>
 //#include <GL/glut.h>
 
@@ -34,6 +35,7 @@ Roble *e2;
 Pino *e3;
 Alamo *e4;
 Coche *e5;
+Esfera *e6;
 
 void buildSceneObjects() {	 
     angX=0.0f;
@@ -48,9 +50,12 @@ void buildSceneObjects() {
 	e3->mT->setTraslada(0.0f, 0.0, 9.0f);
 	e4 = new Alamo();
 	e4->mT->setTraslada(0.0f, 0.0, 12.0f);
-
-
 	e5 = new Coche();
+	e5->mT->setTraslada(.0f, 2.2f, .0f);
+	e6 = new Esfera(100000, 100000);
+	e6->mT->setTraslada(15.0f, .0f, .0f);
+	e6->mT->setEscala(10,10,10);
+	e6->setColor(.5f, .5f, .5f);
 }
 
 void initGL() {	 		 
@@ -121,8 +126,8 @@ void display(void) {
 	e2->dibuja();
 	e3->dibuja();
 	e4->dibuja();
-
 	e5->dibuja();
+	e6->dibuja();
 
 	// Drawing the scene	 		 
 	glColor3f(1.0, 1.0, 1.0);
@@ -176,6 +181,8 @@ void key(unsigned char key, int x, int y){
 		case 'c': angZ=angZ-5; break;
 		case 'q': e5->avanza(0.1f); break;
 		case 'w': e5->avanza(-0.1f); break;
+		case 't': e5->lightOn(); break;
+		case 'y': e5->lightOff(); break;
 		case '1': e5->avanzaGiro(0.1f, 0.5f); break;
 		case '2': e5->avanzaGiro(0.1f, -0.5f); break;
 		case '3': e5->avanzaGiro(-0.1f, 0.5f); break;

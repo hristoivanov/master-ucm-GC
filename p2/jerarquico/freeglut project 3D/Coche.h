@@ -4,6 +4,7 @@
 #include "ObjetoCompuesto.h"
 #include "Cubo.h"
 #include "Rueda.h"
+#include "Faro.h"
 
 class Coche : public ObjetoCompuesto {
 private:
@@ -15,5 +16,7 @@ public:
 	void avanza(GLfloat f);
 	void avanzaGiro(GLfloat f, GLfloat turn);
 	void resetRuedas(GLfloat turn);
+	void lightOn();
+	void lightOff();
 };
 #endif
