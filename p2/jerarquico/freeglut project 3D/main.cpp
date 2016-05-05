@@ -7,6 +7,7 @@
 #include "Abeto.h"
 #include "Alamo.h"
 #include "Esfera.h"
+#include "Farola.h"
 #include <GL/freeglut.h>
 //#include <GL/glut.h>
 
@@ -36,6 +37,7 @@ Pino *e3;
 Alamo *e4;
 Coche *e5;
 Esfera *e6;
+Farola *e7;
 
 void buildSceneObjects() {	 
     angX=0.0f;
@@ -43,23 +45,25 @@ void buildSceneObjects() {
     angZ=0.0f;	
 
 	e1 = new Abeto();
-	e1->mT->setTraslada(0.0f, 0.0f, 3.0f);
+	e1->mT->setTraslada(0.0f, 0.0f, 6.0f);
 	e2 = new Roble();
-	e2->mT->setTraslada(0.0f, 0.0f, 6.0f);
+	e2->mT->setTraslada(0.0f, 0.0f, 12.0f);
 	e3 = new Pino();
-	e3->mT->setTraslada(0.0f, 0.0, 9.0f);
+	e3->mT->setTraslada(0.0f, 0.0, 18.0f);
 	e4 = new Alamo();
-	e4->mT->setTraslada(0.0f, 0.0, 12.0f);
+	e4->mT->setTraslada(0.0f, 0.0, 24.0f);
 	e5 = new Coche();
 	e5->mT->setTraslada(.0f, 2.2f, .0f);
 	e6 = new Esfera(100000, 100000);
 	e6->mT->setTraslada(15.0f, .0f, .0f);
 	e6->mT->setEscala(10,10,10);
 	e6->setColor(.5f, .5f, .5f);
+	e7 = new Farola;
+	e7->mT->setTraslada(0.0f, 0.0, 32.0f);
 }
 
 void initGL() {	 		 
-	glClearColor(0.6f,0.7f,0.8f,1.0);
+	glClearColor(0.0f,0.0f,0.0f,1.0);
 
 	glEnable(GL_COLOR_MATERIAL);
 	glMaterialf(GL_FRONT, GL_SHININESS, 0.9f);
@@ -69,17 +73,33 @@ void initGL() {
 
 	buildSceneObjects();
 
+	//Disable ambient Light
+	GLfloat amb[] = { 0.0f, 0.0f, 0.0f, 1.0 };
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
+
 	// Light0
 	glEnable(GL_LIGHTING);  
 	glEnable(GL_LIGHT0);
-	GLfloat d[]={0.7f,0.5f,0.5f,1.0f};
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, d);
-	GLfloat a[]={0.3f,0.3f,0.3f,1.0f};
-	glLightfv(GL_LIGHT0, GL_AMBIENT, a);
-	GLfloat s[]={1.0f,1.0f,1.0f,1.0f};
-	glLightfv(GL_LIGHT0, GL_SPECULAR, s);
-	GLfloat p[]={25.0f, 25.0f, 25.0f, 1.0f};	 
-	glLightfv(GL_LIGHT0, GL_POSITION, p);
+	GLfloat d0[]={0.7f,0.5f,0.5f,1.0f};
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, d0);
+	GLfloat a0[]={0.3f,0.3f,0.3f,1.0f};
+	glLightfv(GL_LIGHT0, GL_AMBIENT, a0);
+	GLfloat s0[]={1.0f,1.0f,1.0f,1.0f};
+	glLightfv(GL_LIGHT0, GL_SPECULAR, s0);
+	GLfloat p0[]={25.0f, 25.0f, 25.0f, 1.0f};	 
+	glLightfv(GL_LIGHT0, GL_POSITION, p0);
+
+	// Light1
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT1);
+	GLfloat d1[] = { 1.0f, 0.0f, 0.0f, 1.0f };
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, d1);
+	GLfloat a1[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+	glLightfv(GL_LIGHT1, GL_AMBIENT, a1);
+	GLfloat s1[] = { 1.0f, 0.0f, 0.0f, 1.0f };
+	glLightfv(GL_LIGHT1, GL_SPECULAR, s1);
+	GLfloat p1[] = { 0.0f, 0.0f, 25.0f, 0.0f };
+	glLightfv(GL_LIGHT1, GL_POSITION, p1);
 
 	// Camera set up
 	glMatrixMode(GL_MODELVIEW);
@@ -105,6 +125,9 @@ void display(void) {
 	glRotatef(angX, 1.0f, 0.0f, 0.0f);
 	glRotatef(angY, 0.0f, 1.0f, 0.0f);
 	glRotatef(angZ, 0.0f, 0.0f, 1.0f);
+
+	GLfloat p1[] = { 25.0f, 25.0f, 0.0f, 0.0f };
+	glLightfv(GL_LIGHT1, GL_POSITION, p1);
 		
 	glLineWidth(1.5f);
 	// Drawing axes
@@ -128,6 +151,7 @@ void display(void) {
 	e4->dibuja();
 	e5->dibuja();
 	e6->dibuja();
+	e7->dibuja();
 
 	// Drawing the scene	 		 
 	glColor3f(1.0, 1.0, 1.0);
@@ -183,6 +207,12 @@ void key(unsigned char key, int x, int y){
 		case 'w': e5->avanza(-0.1f); break;
 		case 't': e5->lightOn(); break;
 		case 'y': e5->lightOff(); break;
+		case 'r': e7->lightOn(); break;
+		case 'f': e7->lightOff(); break;
+		case 'u': glEnable(GL_LIGHT1);; break;
+		case 'i': glDisable(GL_LIGHT1);; break;
+		case 'g': glEnable(GL_LIGHT0);; break;
+		case 'j': glDisable(GL_LIGHT0);; break;
 		case '1': e5->avanzaGiro(0.1f, 0.5f); break;
 		case '2': e5->avanzaGiro(0.1f, -0.5f); break;
 		case '3': e5->avanzaGiro(-0.1f, 0.5f); break;

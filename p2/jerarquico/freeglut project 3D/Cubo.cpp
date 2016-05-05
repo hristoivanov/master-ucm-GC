@@ -1,31 +1,76 @@
 #include "Cubo.h"
 
 Cubo::Cubo() {
-	numHijos = 3;
-	hijos = new Objeto3D*[numHijos];
+	numeroVertices = 8;
+	vertice = new PuntoVector3D*[numeroVertices];
+	numeroNormales = 6;
+	normal = new PuntoVector3D*[numeroNormales];
+	numeroCaras = 6;
+	cara = new Cara*[6];
 
-	hijos[0] = new Cilindro(1.0, 4, 4);
-	hijos[0]->mT->setTraslada(0.0, 0.0, -0.5);
-	hijos[0]->mT->setEscala(1 / sqrtf(2.0), 1 / sqrtf(2.0), 1.0);
-	hijos[0]->setColor(this->color[0], this->color[1], this->color[2]);
+	// Vértices de abajo
+	vertice[0] = new PuntoVector3D(5.5f, -5.5f, 5.5f, 1);
+	vertice[1] = new PuntoVector3D(5.5f, -5.5f, -5.5f, 1);
+	vertice[2] = new PuntoVector3D(-5.5f, -5.5f, -5.5f, 1);
+	vertice[3] = new PuntoVector3D(-5.5f, -5.5f, 5.5f, 1);
+	// Vértices de arriba
+	vertice[4] = new PuntoVector3D(5.5f, 5.5f, 5.5f, 1);
+	vertice[5] = new PuntoVector3D(5.5f, 5.5f, -5.5f, 1);
+	vertice[6] = new PuntoVector3D(-5.5f, 5.5f, -5.5f, 1);
+	vertice[7] = new PuntoVector3D(-5.5f, 5.5f, 5.5f, 1);
 
-	hijos[1] = new Disco(0, 4, 4);
-	hijos[1]->mT->setTraslada(0.0, 0.0, -0.5);
-	hijos[1]->mT->setEscala(1 / sqrtf(2.0), 1 / sqrtf(2.0), 1.0);
-	hijos[1]->setColor(this->color[0], this->color[1], this->color[2]);
+	// Normales caras frontal y trasera	 
+	normal[0] = new PuntoVector3D(0.0f, 0.0f, 1.0f, 0);
+	normal[1] = new PuntoVector3D(0.0f, 0.0f, -1.0f, 0);
+	// Normales caras lateral izquierda y derecha
+	normal[2] = new PuntoVector3D(1.0f, 0.0f, 0.0f, 0);
+	normal[3] = new PuntoVector3D(-1.0f, 0.0f, 0.0f, 0);
+	// Normales caras superior e inferior
+	normal[4] = new PuntoVector3D(0.0f, 1.0f, 0.0f, 0);
+	normal[5] = new PuntoVector3D(0.0f, -1.0f, 0.0f, 0);
 
-	hijos[2] = new Disco(0, 4, 4);
-	hijos[2]->mT->setTraslada(0.0, 0.0, 0.5);
-	hijos[2]->mT->setEscala(1 / sqrtf(2.0), 1 / sqrtf(2.0), 1.0);
-	hijos[2]->setColor(this->color[0], this->color[1], this->color[2]);
+	// Caras frontal y trasera
+	VerticeNormal** aVN = new VerticeNormal*[4];
+	aVN[0] = new VerticeNormal(0, 0);
+	aVN[1] = new VerticeNormal(4, 0);
+	aVN[2] = new VerticeNormal(7, 0);
+	aVN[3] = new VerticeNormal(3, 0);
+	cara[0] = new Cara(4, aVN);
 
-	for (int i = 0; i<numHijos; i++) {
-		hijos[i]->mT->setRota(0, 0, 45);
-	}
-}
+	aVN = new VerticeNormal*[4];
+	aVN[0] = new VerticeNormal(1, 1);
+	aVN[1] = new VerticeNormal(2, 1);
+	aVN[2] = new VerticeNormal(6, 1);
+	aVN[3] = new VerticeNormal(5, 1);
+	cara[1] = new Cara(4, aVN);
 
-void Cubo::setColor(GLfloat red, GLfloat green, GLfloat blue){
-	for (int i = 0; i<numHijos; i++) {
-		hijos[i]->setColor(red, green, blue);
-	}
+	// Caras lateral izquierda y derecha
+	aVN = new VerticeNormal*[4];
+	aVN[0] = new VerticeNormal(0, 2);
+	aVN[1] = new VerticeNormal(1, 2);
+	aVN[2] = new VerticeNormal(5, 2);
+	aVN[3] = new VerticeNormal(4, 2);
+	cara[2] = new Cara(4, aVN);
+
+	aVN = new VerticeNormal*[4];
+	aVN[0] = new VerticeNormal(2, 3);
+	aVN[1] = new VerticeNormal(3, 3);
+	aVN[2] = new VerticeNormal(7, 3);
+	aVN[3] = new VerticeNormal(6, 3);
+	cara[3] = new Cara(4, aVN);
+
+	// Caras superior e inferior
+	aVN = new VerticeNormal*[4];
+	aVN[0] = new VerticeNormal(4, 4);
+	aVN[1] = new VerticeNormal(5, 4);
+	aVN[2] = new VerticeNormal(6, 4);
+	aVN[3] = new VerticeNormal(7, 4);
+	cara[4] = new Cara(4, aVN);
+
+	aVN = new VerticeNormal*[4];
+	aVN[0] = new VerticeNormal(0, 5);
+	aVN[1] = new VerticeNormal(3, 5);
+	aVN[2] = new VerticeNormal(2, 5);
+	aVN[3] = new VerticeNormal(1, 5);
+	cara[5] = new Cara(4, aVN);
 }

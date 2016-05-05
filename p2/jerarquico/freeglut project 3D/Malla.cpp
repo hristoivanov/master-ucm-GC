@@ -1,5 +1,4 @@
- 
-#include "Malla.h"
+ #include "Malla.h"
  
 Malla::Malla(int nV, int nN, int nC, PuntoVector3D** v, PuntoVector3D** n, Cara** c) {
 	numeroVertices=nV;
@@ -40,16 +39,21 @@ int Malla::getNumeroCaras() {
 
 void Malla::dibuja() {
 	glMatrixMode(GL_MODELVIEW);
-	for (int i=0; i<numeroCaras; i++) {		
-		glBegin(GL_POLYGON);			 
-		for (int j=0; j<cara[i]->getNumeroVertices(); j++) {
-			int iN=cara[i]->getIndiceNormalK(j);
-			int iV=cara[i]->getIndiceVerticeK(j);
-			glNormal3f(normal[iN]->getX(), normal[iN]->getY(), normal[iN]->getZ());            				 
-			glVertex3f(vertice[iV]->getX(), vertice[iV]->getY(), vertice[iV]->getZ());
+	glPushMatrix();
+		glMultMatrixf(this->mT->m);
+		glColor3f(color[0], color[1], color[2]);
+
+		for (int i=0; i<numeroCaras; i++) {		
+			glBegin(GL_POLYGON);			 
+			for (int j=0; j<cara[i]->getNumeroVertices(); j++) {
+				int iN=cara[i]->getIndiceNormalK(j);
+				int iV=cara[i]->getIndiceVerticeK(j);
+				glNormal3f(normal[iN]->getX(), normal[iN]->getY(), normal[iN]->getZ());            				 
+				glVertex3f(vertice[iV]->getX(), vertice[iV]->getY(), vertice[iV]->getZ());
+			}
+			glEnd();
 		}
-		glEnd();
-	}	 
+	glPopMatrix();
 }
 
 
@@ -66,13 +70,7 @@ PuntoVector3D* Malla::CalculoVectorNormalPorNewell(Cara* c){
 		n->setY((vertActual->getZ() - vertSiguiente->getZ()) * (vertActual->getX() + vertSiguiente->getX()));
 
 		n->setZ((vertActual->getX() - vertSiguiente->getX()) * (vertActual->getY() + vertSiguiente->getY()));
-
 	}
-
 	n->normalizar();
-
 	return n;
 }
-
- 
-

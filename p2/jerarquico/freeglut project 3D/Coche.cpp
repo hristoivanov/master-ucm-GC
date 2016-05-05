@@ -7,7 +7,7 @@ Coche::Coche() {
 	hijos = new Objeto3D*[numHijos];
 
 	hijos[0] = new Cubo();
-	hijos[0]->mT->setEscala(3, 3, 3);
+	hijos[0]->mT->setEscala(.3f, .3f, .3f);
 	hijos[0]->setColor(.6f, .0f, .6f);
 
 	hijos[1] = new Rueda();

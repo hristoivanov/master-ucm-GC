@@ -75,6 +75,12 @@
     <ClCompile Include="Faro.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Luz.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Farola.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abeto.h">
@@ -132,6 +138,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Faro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Luz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Farola.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
