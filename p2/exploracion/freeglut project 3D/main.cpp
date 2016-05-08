@@ -23,6 +23,7 @@ int WIDTH= 500, HEIGHT= 500;
 // Viewing frustum parameters
 GLdouble xRight=10, xLeft=-xRight, yTop=10, yBot=-yTop, N=1, F=1000;
 bool baldosas = true;
+bool orto = true;
 int nCol = 2;
 
 // Camera parameters
@@ -218,25 +219,26 @@ void key(unsigned char key, int x, int y){
 		case '4': c3->lateral(); break;
 		case '5': c3->frontal(); break;
 		case '6': c3->cenital(); break;
-		case '7': c3->rincon(); break; baldosas = false;
+		case '7': c3->rincon(); break;
 		case '8': baldosas = true; break;
 		case '9': baldosas = false; desembaldosar(); break;
 		case 'u': c3->roll(0.9f); break;
 		case 'i': c3->yaw(0.9f); break;
 		case 'o': c3->pitch(0.9f); break;
+		case 'p': orto=!orto; c3->setProjection(orto); break;
 		case 'e': 
 			c0->right *= .95f; c0->left *= .95f; c0->top *= .95f; c0->bottom *= .95f;
 			c1->right *= .95f; c1->left *= .95f; c1->top *= .95f; c1->bottom *= .95f;
 			c2->right *= .95f; c2->left *= .95f; c2->top *= .95f; c2->bottom *= .95f;
 			c3->right *= .95f; c3->left *= .95f; c3->top *= .95f; c3->bottom *= .95f;
-			c0->setProjection(); c1->setProjection(); c2->setProjection(); c3->setProjection();
+			c0->setProjection(orto); c1->setProjection(orto); c2->setProjection(orto); c3->setProjection(orto);
 			break;
 		case 'h':
 			c0->right *= 1.05f; c0->left *= 1.05f; c0->top *= 1.05f; c0->bottom *= 1.05f;
 			c1->right *= 1.05f; c1->left *= 1.05f; c1->top *= 1.05f; c1->bottom *= 1.05f;
 			c2->right *= 1.05f; c2->left *= 1.05f; c2->top *= 1.05f; c2->bottom *= 1.05f;
 			c3->right *= 1.05f; c3->left *= 1.05f; c3->top *= 1.05f; c3->bottom *= 1.05f;
-			c0->setProjection(); c1->setProjection(); c2->setProjection(); c3->setProjection();
+			c0->setProjection(orto); c1->setProjection(orto); c2->setProjection(orto); c3->setProjection(orto);
 			break;
 		default:
 			  need_redisplay = false;
