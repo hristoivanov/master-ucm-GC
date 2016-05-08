@@ -9,11 +9,12 @@ Camara::Camara() {
     left=-10; right=-left; bottom=-10; top=-bottom; 
 	Near=0.0f; Far=1000;
 	fovy=5; aspect=2.5; 
+	orto = true;
 
 	posExtrusion = 0.0f;
 	  
 	setView();  
-	setProjection();
+	setProjection(orto);
 	setCameraCoordinateSystem();		     
 }
 
@@ -38,13 +39,17 @@ void Camara::setCameraCoordinateSystem() {
 	setModelViewMatrix();
 }
 
-void Camara::setProjection() {
+void Camara::setProjection(bool orto) {
 	//Define la matriz de proyección con el comando 
 	//glOrtho() o glFrustum()/gluPerspective()	 
 	//TO DO		 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(left, right, bottom, top, Near, Far);
+	if(orto){
+		glOrtho(left, right, bottom, top, Near, Far);
+	}else{
+		gluPerspective(fovy,aspect,Near,Far);
+	}
 }
 
 void Camara::setModelViewMatrix() {
@@ -212,7 +217,7 @@ void Camara::moveExtrusion(GLfloat inc){
 	eye = aux;
 	aux = this->t1->getPositionCamara(this->posExtrusion + inc);
 	look = aux;
-	eye->setY(2.0f);
+	//eye->setY(2.0f);
 	setView();
 	setCameraCoordinateSystem();
 }

@@ -12,6 +12,7 @@ using namespace std;
 // Freeglut parameters
 // Flag telling us to keep processing events
 // bool continue_in_main_loop= true; //(**)
+bool orto = true;
 
 // Viewport size
 int WIDTH= 500, HEIGHT= 500;
@@ -159,6 +160,7 @@ void key(unsigned char key, int x, int y){
 		case 'g': t1->CambiaEstilo(GL_LINE_LOOP); break;
 		case 'h': t1->CambiaEstilo(GL_POLYGON); break;
 		case ' ': c1->moveExtrusion(0.1f); break;
+		case 'p': orto=!orto; c1->setProjection(orto); break;
 		default:
 			  need_redisplay = false;
 			  break;

@@ -12,6 +12,7 @@ class Camara {
         GLdouble fovy, aspect; 	
 		Extrusion* t1;
 		GLfloat posExtrusion;
+		bool orto;
 
 		void setView();	
 		void setCameraCoordinateSystem();
@@ -27,7 +28,7 @@ class Camara {
         void frontal();
         void cenital();
         void rincon(); 
-		void setProjection(); 
+		void setProjection(bool orto); 
 		void roll(float ang);
         void pitch(float ang);
         void yaw(float ang);
