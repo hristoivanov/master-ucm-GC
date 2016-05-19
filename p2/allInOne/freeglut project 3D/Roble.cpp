@@ -7,20 +7,50 @@ Roble::Roble() {
 	GLfloat alturaTronco = 6.0f;
 	GLfloat anchuraCopa = 2.5f;
 
-	numeroElementos = 3;
-	elemento = new Elemento*[numeroElementos];
+	numHijos = 3;
+	hijos = new Objeto3D*[numHijos];
 
-	elemento[0] = new Cilindro(ratioTronco, divs, divs);
-	elemento[0]->setEscalado(1.0, 1.0, alturaTronco + 1);
-	elemento[0]->setRotacion(-90.0, 0.0, 0.0);
-	elemento[0]->setColor(.4f, .0f, .0f);
+	hijos[0] = new Cilindro(ratioTronco, divs, divs);
+	hijos[0]->mT->setEscala(1.0, 1.0f, alturaTronco + 1.0f);
+	hijos[0]->mT->setRota(-90.0, 0.0, 0.0);
+	hijos[0]->setColor(.4f, .0f, .0f);
 
-	elemento[1] = new Disco(0, divs, divs);
-	elemento[1]->setRotacion(90.0, 0.0,    0.0);
-	elemento[1]->setColor(.4f, .0f, .0f);
+	hijos[1] = new Disco(0, divs, divs);
+	hijos[1]->mT->setRota(90.0, 0.0, 0.0);
+	hijos[1]->setColor(.4f, .0f, .0f);
 
-	elemento[2] = new Esfera(divs, divs);
-	elemento[2]->setEscalado(anchuraCopa, anchuraCopa, anchuraCopa);
-	elemento[2]->setPosicion(0.0, alturaTronco, 0.0);
-	elemento[2]->setColor(.4f, 1.0f, .4f);
+	hijos[2] = new Esfera(divs, divs);
+	hijos[2]->mT->setTraslada(0.0, alturaTronco, 0.0);
+	hijos[2]->mT->setEscala(anchuraCopa, anchuraCopa, anchuraCopa);
+	hijos[2]->setColor(.4f, 1.0f, .4f);
+	colorEsp = new float[3]();
+	colorEsp[0] = .5f; colorEsp[1] = .5f; colorEsp[2] = 0.5f;
+}
+
+void Roble::dibuja() {
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glMultMatrixf(this->mT->m);
+	for (int i = 0; i < numHijos; i++){
+		if (i != 2)
+			hijos[i]->dibuja();
+		else{
+			glMaterialfv(GL_FRONT, GL_SPECULAR, colorEsp);
+			hijos[i]->dibuja();
+			GLfloat amb[] = { 0.0f, 0.0f, 0.0f};
+			glMaterialfv(GL_FRONT, GL_SPECULAR, amb);
+		}
+	}
+	glPopMatrix();
+}
+void Roble::cambiaEsp(float aux) {
+	GLfloat a = colorEsp[0] + aux;
+	if (a > 1.0f)
+		a = 1.0f;
+	if (a < .0f)
+		a = .0f;
+
+	colorEsp[0] = a;
+	colorEsp[1] = a;
+	colorEsp[2] = a;
 }

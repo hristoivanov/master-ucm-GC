@@ -12,6 +12,7 @@ public:
 	Objeto3D();
 	~Objeto3D();
 	virtual void dibuja();
+	virtual void _dibuja();
 	virtual void setColor(GLfloat red, GLfloat green, GLfloat blue);
 };
 #endif

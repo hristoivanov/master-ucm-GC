@@ -1,9 +1,9 @@
 #ifndef Disco_H_
 #define Disco_H_
 
-#include "Elemento.h"
+#include "Objeto3D.h"
 
-class Disco : public Elemento {
+class Disco : public Objeto3D {
 private:
 	GLdouble radioInner;
 	GLUquadric* disco;

@@ -1,19 +1,18 @@
 #include "Rueda.h"
 
 Rueda::Rueda() {
-	//trash
-	numeroElementos = 2;
-	elemento = new Elemento*[numeroElementos];
+	numHijos = 2;
+	hijos = new Objeto3D*[numHijos];
 
-	elemento[0] = new Cilindro(1.0, 8, 8);
-	elemento[0]->setPosicion(0.0, 0.0, -0.5);
+	hijos[0] = new Cilindro(1.0, 8, 8);
+	hijos[0]->mT->setTraslada(0.0, 0.0, -0.5);
 
-	elemento[1] = new Disco(0, 8, 8);
-	elemento[1]->setPosicion(0.0, 0.0, 0.5);
+	hijos[1] = new Disco(0, 8, 8);
+	hijos[1]->mT->setTraslada(0.0, 0.0, 0.5);
 }
 
 void Rueda::setColor(GLfloat red, GLfloat green, GLfloat blue){
-	for (int i = 0; i<numeroElementos; i++) {
-		elemento[i]->setColor(red, green, blue);
+	for (int i = 0; i<numHijos; i++) {
+		hijos[i]->setColor(red, green, blue);
 	}
 }

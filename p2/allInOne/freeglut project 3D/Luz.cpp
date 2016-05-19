@@ -18,7 +18,7 @@ Luz::Luz(GLenum lisghtId) {
 	glLightfv(this->lightId, GL_SPECULAR, this->esp);
 }
 
-void Luz::dibuja(){
+void Luz::_dibuja(){
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 		glMultMatrixf(this->mT->m);

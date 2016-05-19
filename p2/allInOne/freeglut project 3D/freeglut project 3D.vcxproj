@@ -69,6 +69,7 @@
     <ClCompile Include="Abeto.cpp" />
     <ClCompile Include="Alamo.cpp" />
     <ClCompile Include="Camara.cpp" />
+    <ClCompile Include="Cara.cpp" />
     <ClCompile Include="Cilindro.cpp" />
     <ClCompile Include="Coche.cpp" />
     <ClCompile Include="Color.cpp" />
@@ -77,16 +78,25 @@
     <ClCompile Include="Disco.cpp" />
     <ClCompile Include="Elemento.cpp" />
     <ClCompile Include="Esfera.cpp" />
+    <ClCompile Include="Faro.cpp" />
+    <ClCompile Include="Farola.cpp" />
+    <ClCompile Include="Luz.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Malla.cpp" />
+    <ClCompile Include="Objeto3D.cpp" />
+    <ClCompile Include="ObjetoCompuesto.cpp" />
     <ClCompile Include="Pino.cpp" />
     <ClCompile Include="PuntoVector3D.cpp" />
     <ClCompile Include="Roble.cpp" />
     <ClCompile Include="Rueda.cpp" />
+    <ClCompile Include="TAfin.cpp" />
+    <ClCompile Include="VerticeNormal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abeto.h" />
     <ClInclude Include="Alamo.h" />
     <ClInclude Include="Camara.h" />
+    <ClInclude Include="Cara.h" />
     <ClInclude Include="Cilindro.h" />
     <ClInclude Include="Coche.h" />
     <ClInclude Include="Color.h" />
@@ -95,10 +105,18 @@
     <ClInclude Include="Disco.h" />
     <ClInclude Include="Elemento.h" />
     <ClInclude Include="Esfera.h" />
+    <ClInclude Include="Faro.h" />
+    <ClInclude Include="Farola.h" />
+    <ClInclude Include="Luz.h" />
+    <ClInclude Include="Malla.h" />
+    <ClInclude Include="Objeto3D.h" />
+    <ClInclude Include="ObjetoCompuesto.h" />
     <ClInclude Include="Pino.h" />
     <ClInclude Include="PuntoVector3D.h" />
     <ClInclude Include="Roble.h" />
     <ClInclude Include="Rueda.h" />
+    <ClInclude Include="TAfin.h" />
+    <ClInclude Include="VerticeNormal.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

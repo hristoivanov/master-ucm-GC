@@ -16,3 +16,12 @@ void ObjetoCompuesto::dibuja() {
 			hijos[i]->dibuja();
 	glPopMatrix();
 }
+
+void ObjetoCompuesto::_dibuja() {
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+		glMultMatrixf(this->mT->m);
+		for (int i = 0; i<numHijos; i++)
+			hijos[i]->_dibuja();
+	glPopMatrix();
+}

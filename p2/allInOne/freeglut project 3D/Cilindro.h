@@ -1,9 +1,9 @@
 #ifndef Cilindro_H_
 #define Cilindro_H_
 
-#include "Elemento.h"
+#include "Objeto3D.h"
 
-class Cilindro : public Elemento {
+class Cilindro : public Objeto3D {
 private:
 	GLdouble topRadio;
 	GLUquadric* cilindro;

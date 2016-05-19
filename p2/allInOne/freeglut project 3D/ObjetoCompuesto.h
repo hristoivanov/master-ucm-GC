@@ -8,6 +8,7 @@ public:
 	ObjetoCompuesto();
 	~ObjetoCompuesto();
 	void dibuja();
+	void _dibuja();
 
 protected:
 	int numHijos;

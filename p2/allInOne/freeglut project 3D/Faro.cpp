@@ -22,7 +22,7 @@ Faro::Faro(GLenum lisghtId) {
 	glLightf(this->lightId, GL_SPOT_CUTOFF, ang);
 }
 
-void Faro::dibuja(){
+void Faro::_dibuja(){
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 		glMultMatrixf(this->mT->m);

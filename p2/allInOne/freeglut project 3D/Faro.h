@@ -17,7 +17,7 @@ private:
 
 public:
 	Faro(GLenum lisghtId);
-	void dibuja();
+	void _dibuja();
 	void setAng(GLfloat ang);
 	void setAmb(GLfloat r, GLfloat g, GLfloat b);
 	void setDif(GLfloat r, GLfloat g, GLfloat b);

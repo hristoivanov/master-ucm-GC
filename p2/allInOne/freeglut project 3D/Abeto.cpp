@@ -8,27 +8,27 @@ Abeto::Abeto() {
 	GLfloat alturaCopa = 5.0f;
 	GLfloat anchuraCopa = 3.0f;
 
-	numeroElementos = 4;
-	elemento = new Elemento*[numeroElementos];
+	numHijos = 4;
+	hijos = new Objeto3D*[numHijos];
 
-	elemento[0] = new Cilindro(ratioTronco, divs, divs);
-	elemento[0]->setEscalado(1.0, 1.0, alturaTronco + 1);
-	elemento[0]->setRotacion(-90.0, 0.0, 0.0);
-	elemento[0]->setColor(.4f, .0f, .0f);
+	hijos[0] = new Cilindro(ratioTronco, divs, divs);
+	hijos[0]->mT->setEscala(1.0f, 1.0f, alturaTronco + 1.0f);
+	hijos[0]->mT->setRota(-90.0f, 0.0f, 0.0f);
+	hijos[0]->setColor(.4f, .0f, .0f);
 
-	elemento[1] = new Disco(0, divs, divs);
-	elemento[1]->setRotacion(90.0, 0.0, 0.0);
-	elemento[1]->setColor(.4f, .0f, .0f);
-
-	elemento[2] = new Cilindro(0.0, divs, divs);
-	elemento[2]->setEscalado(anchuraCopa, anchuraCopa, alturaCopa);
-	elemento[2]->setRotacion(-90.0, 0.0, 0.0);
-	elemento[2]->setPosicion(0.0, alturaTronco, 0.0);
-	elemento[2]->setColor(.4f, 1.0f, .4f);
-
-	elemento[3] = new Disco(0, divs, divs);
-	elemento[3]->setEscalado(anchuraCopa, anchuraCopa, alturaCopa);
-	elemento[3]->setRotacion(90.0, 0.0, 0.0);
-	elemento[3]->setPosicion(0.0, alturaTronco, 0.0);
-	elemento[3]->setColor(.4f, 1.0f, .4f);
+	hijos[1] = new Disco(0, divs, divs);
+	hijos[1]->mT->setRota(90.0f, 0.0f, 0.0f);
+	hijos[1]->setColor(.4f, .0f, .0f);
+	
+	hijos[2] = new Cilindro(0.0f, divs, divs);
+	hijos[2]->mT->setTraslada(0.0f, alturaTronco, 0.0);
+	hijos[2]->mT->setEscala(anchuraCopa, anchuraCopa, alturaCopa);
+	hijos[2]->mT->setRota(-90.0f, 0.0f, 0.0f);
+	hijos[2]->setColor(.4f, 1.0f, .4f);
+	
+	hijos[3] = new Disco(0, divs, divs);
+	hijos[3]->mT->setTraslada(0.0f, alturaTronco, 0.0f);
+	hijos[3]->mT->setEscala(anchuraCopa, anchuraCopa, alturaCopa);
+	hijos[3]->mT->setRota(90.0f, 0.0f, 0.0f);
+	hijos[3]->setColor(.4f, 1.0f, .4f);
 }

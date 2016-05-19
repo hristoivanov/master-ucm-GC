@@ -1,9 +1,9 @@
 #ifndef Esfera_H_
 #define Esfera_H_
 
-#include "Elemento.h"
+#include "Objeto3D.h"
 
-class Esfera : public Elemento {
+class Esfera : public Objeto3D {
 private:
 	GLint meridianos;
 	GLint paralelos;

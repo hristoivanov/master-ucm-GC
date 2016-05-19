@@ -68,6 +68,7 @@ void PuntoVector3D::restar(PuntoVector3D* pv) {
 	z -= pv->getZ();
 }
 
+
 PuntoVector3D* PuntoVector3D::clonar() {
     return new PuntoVector3D(x, y, z, pv);
 }

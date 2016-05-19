@@ -1,11 +1,11 @@
 #ifndef Pino_H_
 #define Pino_H_
 
-#include "Conjunto.h"
+#include "ObjetoCompuesto.h"
 #include "Cilindro.h"
 #include "Disco.h"
 
-class Pino : public Conjunto {
+class Pino : public ObjetoCompuesto {
 public:
 	Pino();
 };

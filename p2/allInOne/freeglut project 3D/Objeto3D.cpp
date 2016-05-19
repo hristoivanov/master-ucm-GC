@@ -16,3 +16,4 @@ void Objeto3D::setColor(GLfloat red, GLfloat green, GLfloat blue){
 }
 
 void Objeto3D::dibuja() {}
+void Objeto3D::_dibuja() {}

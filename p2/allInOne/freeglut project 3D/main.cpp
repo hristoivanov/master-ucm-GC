@@ -6,6 +6,8 @@
 #include "Roble.h"
 #include "Abeto.h"
 #include "Alamo.h"
+#include "Esfera.h"
+#include "Farola.h"
 #include "Camara.h"
 #include <GL/freeglut.h>
 //#include <GL/glut.h>
@@ -23,11 +25,6 @@ int WIDTH= 500, HEIGHT= 500;
 // Viewing frustum parameters
 GLdouble xRight=10, xLeft=-xRight, yTop=10, yBot=-yTop, N=1, F=1000;
 
-// Camera parameters
-GLdouble eyeX=100.0, eyeY=100.0, eyeZ=100.0;
-GLdouble lookX=0.0, lookY=0.0, lookZ=0.0;
-GLdouble upX=0, upY=1, upZ=0;
-
 // Scene variables
 GLfloat angX, angY, angZ; 
 Abeto *e1;
@@ -35,6 +32,8 @@ Roble *e2;
 Pino *e3;
 Alamo *e4;
 Coche *e5;
+Esfera *e6;
+Farola *e7;
 
 //Camaras
 Camara *c0;
@@ -53,16 +52,21 @@ void buildSceneObjects() {
     angZ=0.0f;	
 
 	e1 = new Abeto();
-	e1->setPosicion(-12, 0.0, -5);
+	e1->mT->setTraslada(0.0f, 0.0f, 6.0f);
 	e2 = new Roble();
-	e2->setPosicion(-4, 0.0, -5);
+	e2->mT->setTraslada(0.0f, 0.0f, 12.0f);
 	e3 = new Pino();
-	e3->setPosicion(4, 0.0, -5);
+	e3->mT->setTraslada(0.0f, 0.0, 18.0f);
 	e4 = new Alamo();
-	e4->setPosicion(12, 0.0, -5);
-
-
+	e4->mT->setTraslada(0.0f, 0.0, 24.0f);
 	e5 = new Coche();
+	e5->mT->setTraslada(.0f, 2.2f, .0f);
+	e6 = new Esfera(1000, 1000);
+	e6->mT->setTraslada(15.0f, .0f, .0f);
+	e6->mT->setEscala(10,10,10);
+	e6->setColor(1.0f, .6f, 1.0f);
+	e7 = new Farola;
+	e7->mT->setTraslada(0.0f, 0.0, 32.0f);
 }
 
 void initGL() {	 		 
@@ -76,17 +80,37 @@ void initGL() {
 
 	buildSceneObjects();
 
+	//Disable ambient Light
+	GLfloat amb[] = { 0.0f, 0.0f, 0.0f, 1.0 };
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
+
 	// Light0
 	glEnable(GL_LIGHTING);  
 	glEnable(GL_LIGHT0);
-	GLfloat d[]={0.7f,0.5f,0.5f,1.0f};
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, d);
-	GLfloat a[]={0.3f,0.3f,0.3f,1.0f};
-	glLightfv(GL_LIGHT0, GL_AMBIENT, a);
-	GLfloat s[]={1.0f,1.0f,1.0f,1.0f};
-	glLightfv(GL_LIGHT0, GL_SPECULAR, s);
-	GLfloat p[]={25.0f, 25.0f, 25.0f, 1.0f};	 
-	glLightfv(GL_LIGHT0, GL_POSITION, p);
+	GLfloat d0[]={.0f, .0f, .0f, 1.0f};
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, d0);
+	GLfloat a0[]={.8f, .8f, .8f, 1.0f};
+	glLightfv(GL_LIGHT0, GL_AMBIENT, a0);
+	GLfloat s0[]={.0f, .0f, .0f, 1.0f};
+	glLightfv(GL_LIGHT0, GL_SPECULAR, s0);
+	GLfloat p0[]={25.0f, 25.0f, 25.0f, 1.0f};	 
+	glLightfv(GL_LIGHT0, GL_POSITION, p0);
+
+	// Light1
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT1);
+	GLfloat d1[] = { .0f, .4f, .0f, 1.0f };
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, d1);
+	GLfloat a1[] = { .0f, .0f, .0f, 1.0f };
+	glLightfv(GL_LIGHT1, GL_AMBIENT, a1);
+	GLfloat s1[] = { 0.0f, 1.0f, 0.0f, 1.0f };
+	glLightfv(GL_LIGHT1, GL_SPECULAR, s1);
+
+	//Lights
+	glDisable(GL_LIGHT0);
+	glDisable(GL_LIGHT1);
+	e7->lightOff();
+	e5->lightOff();
 
 	c0 = new Camara();
 	c0->lateral();
@@ -110,6 +134,9 @@ void drawScene(void){
 	glRotatef(angY, 0.0f, 1.0f, 0.0f);
 	glRotatef(angZ, 0.0f, 0.0f, 1.0f);
 
+	GLfloat p1[] = { 25.0f, 25.0f, 0.0f, 0.0f };
+	glLightfv(GL_LIGHT1, GL_POSITION, p1);
+
 	glLineWidth(1.5f);
 	// Drawing axes
 	glBegin(GL_LINES);
@@ -126,12 +153,22 @@ void drawScene(void){
 	glVertex3f(0, 0, 20);
 	glEnd();
 
+	// Dibuja las luces de los objetos, si existen.
+	e1->_dibuja();
+	e2->_dibuja();
+	e3->_dibuja();
+	e4->_dibuja();
+	e5->_dibuja();
+	e6->_dibuja();
+	e7->_dibuja();
+
 	e1->dibuja();
 	e2->dibuja();
 	e3->dibuja();
 	e4->dibuja();
-
 	e5->dibuja();
+	e6->dibuja();
+	e7->dibuja();
 
 	// Drawing the scene	 		 
 	glColor3f(1.0, 1.0, 1.0);
@@ -218,11 +255,6 @@ void key(unsigned char key, int x, int y){
 		case 'd': angZ=angZ+5; break;
 		case 'c': angZ=angZ-5; break;
 
-		//TODO
-		case 'f': e5->avanza(0.1f); break;
-		case 'v': e5->avanza(-0.1f); break;
-		//TODO
-
 		case '1': c3->giraX(); break;
 		case '2': c3->giraY(); break;
 		case '3': c3->giraZ(); break;
@@ -244,6 +276,29 @@ void key(unsigned char key, int x, int y){
 		case 'i': c3->zoom(0.95f); break;
 		case 'k': c3->zoom(1.05f); break;
 
+		case 't': e5->lightOn(); break;
+		case 'g': e5->lightOff(); break;
+
+		case 'r': e7->lightOn(); break;
+		case 'f': e7->lightOff(); break;
+
+		case 'y': glEnable(GL_LIGHT1); break;
+		case 'h': glDisable(GL_LIGHT1); break;
+
+		case 'u': glEnable(GL_LIGHT0); break;
+		case 'j': glDisable(GL_LIGHT0); break;
+
+		case 'o': e2->cambiaEsp(-.05f); break;
+		case 'l': e2->cambiaEsp(.05f); break;
+
+		case 'v': e5->avanzaGiro(0.1f, 0.5f); break;
+		case 'b': e5->avanzaGiro(0.1f, -0.5f); break;
+		case 'n': e5->avanzaGiro(-0.1f, 0.5f); break;
+		case 'm': e5->avanzaGiro(-0.1f, -0.5f); break;
+
+		case ' ': e5->avanza(0.1f); break;
+		case '\'': e5->avanza(-0.1f); break;
+
 		default:
 			  need_redisplay = false;
 			  break;
@@ -253,17 +308,41 @@ void key(unsigned char key, int x, int y){
 		glutPostRedisplay();
 }
 
+void keyUp(unsigned char key, int x, int y){
+	bool need_redisplay = true;
+	switch (key) {
+	case '1': e5->resetRuedas(0.5f); break;
+	case '2': e5->resetRuedas(-0.5f); break;
+	case '3': e5->resetRuedas(0.5f); break;
+	case '4': e5->resetRuedas(-0.5f); break;
+	default:
+		need_redisplay = false;
+		break;
+	}
+
+	if (need_redisplay)
+		glutPostRedisplay();
+}
+
 int main(int argc, char *argv[]){
 	cout<< "Starting console..." << endl;
 
-	cout << "a/z, s/x, d/c	--> Rotaciones habituales." << endl;
-	cout << "1, 2, 3		--> Rotaciones de la camara alrededor de los ejes." << endl;
-	cout << "4, 5, 6, 7		--> Vistas lateral, frontal, cenital, rincon." << endl;
-	cout << "p				--> Cambiar de proyeccion, perspectiva u ortogonal." << endl;
-	cout << "q, w, e		--> Rotaciones de la camara: roll, yaw, pitch." << endl;
-	cout << "8, 9			--> Embaldosar, Desembaldosar." << endl;
-	cout << "i, k			--> ZoomIn, ZoomOut." << endl;
-
+	cout << "a/z, s/x, d/c  --> Rotaciones habituales." << endl;
+	cout << "1, 2, 3        --> Rotaciones de la camara alrededor de los ejes." << endl;
+	cout << "4, 5, 6, 7     --> Vistas lateral, frontal, cenital, rincon." << endl;
+	cout << "p              --> Cambiar de proyeccion, perspectiva u ortogonal." << endl;
+	cout << "q, w, e        --> Rotaciones de la camara: roll, yaw, pitch." << endl;
+	cout << "8, 9           --> Embaldosar, Desembaldosar." << endl;
+	cout << "i, k           --> ZoomIn, ZoomOut." << endl;
+	cout << endl;
+	cout << "t, g           --> Apagar/Encender los faros del coche." << endl;
+	cout << "r, f           --> Apagar/Encender la farola." << endl;
+	cout << "y, h           --> Apagar/Encender la luz direccional." << endl;
+	cout << "u, j           --> Apagar/Encender la luz ambiental." << endl;
+	cout << "l, o           --> Aumentar/Disminuir la componente especular de la copa." << endl;
+	cout << endl;
+	cout << "v, b, n, m     --> Mover el coche con giro." << endl;
+	cout << "<space>, '     --> Mover el coche, delante/atras." << endl;
 
 	int my_window; // my window's identifier
 
@@ -280,6 +359,7 @@ int main(int argc, char *argv[]){
 	// Callback registration
 	glutReshapeFunc(resize);
 	glutKeyboardFunc(key);
+	glutKeyboardUpFunc(keyUp);
 	glutDisplayFunc(display);
 
 	// OpenGL basic setting
