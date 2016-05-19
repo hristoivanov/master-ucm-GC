@@ -54,16 +54,16 @@ void buildSceneObjects() {
 	e4->mT->setTraslada(0.0f, 0.0, 24.0f);
 	e5 = new Coche();
 	e5->mT->setTraslada(.0f, 2.2f, .0f);
-	e6 = new Esfera(100000, 100000);
+	e6 = new Esfera(1000, 1000);
 	e6->mT->setTraslada(15.0f, .0f, .0f);
 	e6->mT->setEscala(10,10,10);
-	e6->setColor(.5f, .5f, .5f);
+	e6->setColor(1.0f, .6f, 1.0f);
 	e7 = new Farola;
 	e7->mT->setTraslada(0.0f, 0.0, 32.0f);
 }
 
 void initGL() {	 		 
-	glClearColor(0.0f,0.0f,0.0f,1.0);
+	glClearColor(0.6f,0.7f,0.8f,1.0);
 
 	glEnable(GL_COLOR_MATERIAL);
 	glMaterialf(GL_FRONT, GL_SHININESS, 0.9f);
@@ -80,11 +80,11 @@ void initGL() {
 	// Light0
 	glEnable(GL_LIGHTING);  
 	glEnable(GL_LIGHT0);
-	GLfloat d0[]={0.7f,0.5f,0.5f,1.0f};
+	GLfloat d0[]={.0f, .0f, .0f, 1.0f};
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, d0);
-	GLfloat a0[]={0.3f,0.3f,0.3f,1.0f};
+	GLfloat a0[]={.8f, .8f, .8f, 1.0f};
 	glLightfv(GL_LIGHT0, GL_AMBIENT, a0);
-	GLfloat s0[]={1.0f,1.0f,1.0f,1.0f};
+	GLfloat s0[]={.0f, .0f, .0f, 1.0f};
 	glLightfv(GL_LIGHT0, GL_SPECULAR, s0);
 	GLfloat p0[]={25.0f, 25.0f, 25.0f, 1.0f};	 
 	glLightfv(GL_LIGHT0, GL_POSITION, p0);
@@ -92,14 +92,18 @@ void initGL() {
 	// Light1
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT1);
-	GLfloat d1[] = { 1.0f, 0.0f, 0.0f, 1.0f };
+	GLfloat d1[] = { .0f, .4f, .0f, 1.0f };
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, d1);
-	GLfloat a1[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+	GLfloat a1[] = { .0f, .0f, .0f, 1.0f };
 	glLightfv(GL_LIGHT1, GL_AMBIENT, a1);
-	GLfloat s1[] = { 1.0f, 0.0f, 0.0f, 1.0f };
+	GLfloat s1[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 	glLightfv(GL_LIGHT1, GL_SPECULAR, s1);
-	GLfloat p1[] = { 0.0f, 0.0f, 25.0f, 0.0f };
-	glLightfv(GL_LIGHT1, GL_POSITION, p1);
+
+	//Lights
+	glDisable(GL_LIGHT0);
+	glDisable(GL_LIGHT1);
+	e7->lightOff();
+	e5->lightOff();
 
 	// Camera set up
 	glMatrixMode(GL_MODELVIEW);
@@ -206,17 +210,19 @@ void key(unsigned char key, int x, int y){
 		case 'q': e5->avanza(0.1f); break;
 		case 'w': e5->avanza(-0.1f); break;
 		case 't': e5->lightOn(); break;
-		case 'y': e5->lightOff(); break;
+		case 'g': e5->lightOff(); break;
 		case 'r': e7->lightOn(); break;
 		case 'f': e7->lightOff(); break;
-		case 'u': glEnable(GL_LIGHT1);; break;
-		case 'i': glDisable(GL_LIGHT1);; break;
-		case 'g': glEnable(GL_LIGHT0);; break;
-		case 'j': glDisable(GL_LIGHT0);; break;
+		case 'y': glEnable(GL_LIGHT1); break;
+		case 'h': glDisable(GL_LIGHT1); break;
+		case 'u': glEnable(GL_LIGHT0); break;
+		case 'j': glDisable(GL_LIGHT0); break;
 		case '1': e5->avanzaGiro(0.1f, 0.5f); break;
 		case '2': e5->avanzaGiro(0.1f, -0.5f); break;
 		case '3': e5->avanzaGiro(-0.1f, 0.5f); break;
 		case '4': e5->avanzaGiro(-0.1f, -0.5f); break;
+		case 'o': e2->cambiaEsp(-.05f); break;
+		case 'l': e2->cambiaEsp(.05f); break;
 		default:
 			  need_redisplay = false;
 			  break;

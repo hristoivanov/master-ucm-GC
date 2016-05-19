@@ -7,7 +7,11 @@
 #include "Esfera.h"
 
 class Roble : public ObjetoCompuesto {
+private:
+	GLfloat* colorEsp;
 public:
 	Roble();
+	void dibuja();
+	void cambiaEsp(float aux);
 };
 #endif

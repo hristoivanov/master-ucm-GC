@@ -214,8 +214,10 @@ void Camara::setExtrusion(Extrusion* t1){
 void Camara::moveExtrusion(GLfloat inc){
 	this->posExtrusion = this->posExtrusion + inc;
    	PuntoVector3D* aux = this->t1->getPositionCamara(this->posExtrusion);
+	aux->setY(aux->getY() + .005f);
 	eye = aux;
 	aux = this->t1->getPositionCamara(this->posExtrusion + inc);
+	aux->setY(aux->getY() - .005f);
 	look = aux;
 	//eye->setY(2.0f);
 	setView();

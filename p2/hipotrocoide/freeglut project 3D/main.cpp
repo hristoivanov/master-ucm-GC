@@ -18,7 +18,7 @@ bool orto = true;
 int WIDTH= 500, HEIGHT= 500;
 
 // Viewing frustum parameters
-GLdouble xRight = 2.0f, xLeft = -xRight, yTop = 2.0f, yBot = -yTop, N = 0, F = 1000;
+GLdouble xRight = 0.6f, xLeft = -xRight, yTop = .6f, yBot = -yTop, N = 0, F = 1000;
 
 // Camera parameters
 GLdouble eyeX=100.0, eyeY=100.0, eyeZ=100.0;
@@ -60,6 +60,13 @@ void initGL() {
 	glLightfv(GL_LIGHT0, GL_SPECULAR, s);
 	GLfloat p[]={25.0f, 25.0f, 25.0f, 1.0f};	 
 	glLightfv(GL_LIGHT0, GL_POSITION, p);
+
+	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
+	glEnable(GL_COLOR_MATERIAL);
+	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+	glColor3f(1, 0, 0);
+	glColorMaterial(GL_BACK, GL_AMBIENT_AND_DIFFUSE);
+	glColor3f(0, 1, 0);
 
 	c1 = new Camara();
 	c1->setExtrusion(t1);
@@ -159,7 +166,7 @@ void key(unsigned char key, int x, int y){
 		case 'o': c1->pitch(0.9f); break;
 		case 'g': t1->CambiaEstilo(GL_LINE_LOOP); break;
 		case 'h': t1->CambiaEstilo(GL_POLYGON); break;
-		case ' ': c1->moveExtrusion(0.1f); break;
+		case ' ': c1->moveExtrusion(0.05f); break;
 		case 'p': orto=!orto; c1->setProjection(orto); break;
 		default:
 			  need_redisplay = false;

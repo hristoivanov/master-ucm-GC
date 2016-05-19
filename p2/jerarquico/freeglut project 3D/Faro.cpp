@@ -7,6 +7,8 @@ Faro::Faro(GLenum lisghtId) {
 	this->dir = new float[3]();
 	dir[0] = 0.0f;dir[1] = 0.0f; dir[2] = -1.0f;
 
+	this->amb = new float[4]();
+	amb[0] = 1.0f; amb[1] = 1.0f; amb[2] = 1.0f; amb[3] = 1.0f;
 	this->esp = new float[4]();
 	esp[0] = 1.0f; esp[1] = 1.0f; esp[2] = 1.0f; esp[3] = 1.0f; 
 	this->dif = new float[4]();
@@ -32,6 +34,11 @@ void Faro::dibuja(){
 void Faro::setAng(GLfloat ang){
 	this->ang = ang;
 	glLightf(this->lightId, GL_SPOT_CUTOFF, ang);
+}
+
+void Faro::setAmb(GLfloat r, GLfloat g, GLfloat b){
+	this->amb[0] = r; this->amb[1] = g; this->amb[2] = b;
+	glLightfv(this->lightId, GL_AMBIENT, this->amb);
 }
 
 void Faro::setDif(GLfloat r, GLfloat g, GLfloat b){

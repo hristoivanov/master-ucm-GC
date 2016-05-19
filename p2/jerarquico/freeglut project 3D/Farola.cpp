@@ -24,7 +24,6 @@ Farola::Farola() {
 	hijos[3] = new Luz(GL_LIGHT5);
 	hijos[3]->mT->setTraslada(0.0, alturaTronco, 0.0);
 	dynamic_cast<Luz*>(hijos[3])->setDif(1.0f, 0.0f, 1.0f);
-	dynamic_cast<Luz*>(hijos[3])->setEsp(1.0f, 0.0f, 1.0f);
 }
 
 void Farola::lightOn(){

@@ -8,7 +8,7 @@ Coche::Coche() {
 
 	hijos[0] = new Cubo();
 	hijos[0]->mT->setEscala(.3f, .3f, .3f);
-	hijos[0]->setColor(.6f, .0f, .6f);
+	hijos[0]->setColor(1.0f, .0f, 1.0f);
 
 	hijos[1] = new Rueda();
 	hijos[1]->mT->setTraslada(1.5, -1.5, 1.5);
@@ -40,15 +40,17 @@ Coche::Coche() {
 	hijos[7]->mT->setTraslada(1.5, 0.0, -0.5);
 	hijos[7]->mT->setRota(0.0, -90, 0.0);
 	dynamic_cast<Faro*>(hijos[7])->setAng(10.0f);
+	dynamic_cast<Faro*>(hijos[7])->setAmb(1.0f, 1.0f, 0.0f);
 	dynamic_cast<Faro*>(hijos[7])->setDif(1.0f, 1.0f, 0.0f);
-	dynamic_cast<Faro*>(hijos[7])->setEsp(1.0f, 1.0f, 0.0f);
+	dynamic_cast<Faro*>(hijos[7])->setEsp(0.0f, 0.0f, 0.0f);
 
 	hijos[8] = new Faro(GL_LIGHT7);
 	hijos[8]->mT->setTraslada(1.5, 0.0, 0.5);
 	hijos[8]->mT->setRota(0.0, -90, 0.0);
 	dynamic_cast<Faro*>(hijos[8])->setAng(10.0f);
+	dynamic_cast<Faro*>(hijos[8])->setAmb(1.0f, 1.0f, 0.0f);
 	dynamic_cast<Faro*>(hijos[8])->setDif(1.0f, 1.0f, 0.0f);
-	dynamic_cast<Faro*>(hijos[8])->setEsp(1.0f, 1.0f, 0.0f);
+	dynamic_cast<Faro*>(hijos[8])->setEsp(0.0f, 0.0f, 0.0f);
 }
 
 void Coche::avanza(GLfloat f){

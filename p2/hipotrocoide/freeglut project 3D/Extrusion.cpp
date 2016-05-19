@@ -130,8 +130,12 @@ void Extrusion::dibuja() {
 	glMatrixMode(GL_MODELVIEW);
 	glColor3f(0.0f, 1.0f, 0.0f);
 	for (int i = 0; i<numeroCaras; i++) {
-		if (i % 2 == 0){
-			glColor3f(1.0f, 1.0f, 0.0f);
+		
+		if (((i / 10) % 3) == 0){
+			glColor3f(1.0f, 1.0f, 1.0f);
+		}
+		else if (((i / 10) % 3) == 1){
+			glColor3f(.0f, 1.0f, .0f);
 		}else{
 			glColor3f(1.0f, 0.0f, 0.0f);
 		}
