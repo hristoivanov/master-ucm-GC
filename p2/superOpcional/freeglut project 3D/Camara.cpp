@@ -6,7 +6,7 @@ Camara::Camara() {
     up=new PuntoVector3D(0, 1, 0, 0);
        
     left=-10; right=-left; bottom=-10; top=-bottom; 
-	Near=1; Far=1000;
+	Near=0; Far=1000;
 	fovy=25; aspect=1.1; 
 	  
 	setView();  

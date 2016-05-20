@@ -22,6 +22,5 @@ public:
 	void setTraslada(GLfloat x, GLfloat y, GLfloat z);
 	void setRota(GLfloat x, GLfloat y, GLfloat z);
 	void setEscala(GLfloat x, GLfloat y, GLfloat z);
-
 };
 #endif

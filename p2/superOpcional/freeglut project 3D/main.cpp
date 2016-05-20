@@ -8,7 +8,7 @@
 #include "Alamo.h"
 #include "Esfera.h"
 #include "Farola.h"
-#include "Camara.h"
+#include "Camara2D.h"
 #include "Simple2D.h"
 #include <GL/freeglut.h>
 //#include <GL/glut.h>
@@ -36,15 +36,8 @@ Coche *e5;
 Esfera *e6;
 Farola *e7;
 
-//Camaras
-Camara *c0;
-Camara *c1;
-Camara *c2;
-Camara *c3;
-
-//Embaldosado
-bool baldosas = true;
-int nCol = 2;
+//Camara
+Camara2D* c0;
 
 
 void buildSceneObjects() {	 
@@ -53,21 +46,21 @@ void buildSceneObjects() {
     angZ=0.0f;	
 
 	e1 = new Abeto();
-	e1->mT->setTraslada(0.0f, 0.0f, 6.0f);
+	e1->mT->setTraslada(1.0f, 0.0f, 6.0f);
 	e2 = new Roble();
-	e2->mT->setTraslada(0.0f, 0.0f, 12.0f);
+	e2->mT->setTraslada(1.0f, 0.0f, 12.0f);
 	e3 = new Pino();
-	e3->mT->setTraslada(0.0f, 0.0, 18.0f);
+	e3->mT->setTraslada(1.0f, 0.0, 18.0f);
 	e4 = new Alamo();
-	e4->mT->setTraslada(0.0f, 0.0, 24.0f);
+	e4->mT->setTraslada(1.0f, 0.0, 24.0f);
 	e5 = new Coche();
-	e5->mT->setTraslada(.0f, 2.2f, .0f);
+	e5->mT->setTraslada(1.0f, 2.2f, .0f);
 	e6 = new Esfera(1000, 1000);
 	e6->mT->setTraslada(15.0f, .0f, .0f);
 	e6->mT->setEscala(10,10,10);
 	e6->setColor(1.0f, .6f, 1.0f);
 	e7 = new Farola;
-	e7->mT->setTraslada(0.0f, 0.0, 32.0f);
+	e7->mT->setTraslada(1.0f, 0.0, 32.0f);
 }
 
 void initGL() {	 		 
@@ -88,42 +81,19 @@ void initGL() {
 	// Light0
 	glEnable(GL_LIGHTING);  
 	glEnable(GL_LIGHT0);
-	GLfloat d0[]={.0f, .0f, .0f, 1.0f};
+	GLfloat d0[]={.6f, .6f, .6f, 1.0f};
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, d0);
-	GLfloat a0[]={.8f, .8f, .8f, 1.0f};
+	GLfloat a0[]={.1f, .1f, .1f, 1.0f};
 	glLightfv(GL_LIGHT0, GL_AMBIENT, a0);
 	GLfloat s0[]={.0f, .0f, .0f, 1.0f};
 	glLightfv(GL_LIGHT0, GL_SPECULAR, s0);
 	GLfloat p0[]={25.0f, 25.0f, 25.0f, 1.0f};	 
 	glLightfv(GL_LIGHT0, GL_POSITION, p0);
 
-	// Light1
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT1);
-	GLfloat d1[] = { .0f, .4f, .0f, 1.0f };
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, d1);
-	GLfloat a1[] = { .0f, .0f, .0f, 1.0f };
-	glLightfv(GL_LIGHT1, GL_AMBIENT, a1);
-	GLfloat s1[] = { 0.0f, 1.0f, 0.0f, 1.0f };
-	glLightfv(GL_LIGHT1, GL_SPECULAR, s1);
-
-	//Lights
-	glDisable(GL_LIGHT0);
-	glDisable(GL_LIGHT1);
-	e7->lightOff();
-	e5->lightOff();
-
-	c0 = new Camara();
-	c0->lateral();
-	c1 = new Camara();
-	c1->frontal();
-	c2 = new Camara();
-	c2->cenital();
-	c3 = new Camara();
-	c3->rincon();
+	c0 = new Camara2D();
 
 	// Viewport set up
-	glViewport(0, 0, WIDTH, HEIGHT);  	
+	glViewport(0, 0, WIDTH, HEIGHT);
 }
 
 void drawScene(void){
@@ -176,38 +146,10 @@ void drawScene(void){
 	glPopMatrix();
 }
 
-void embaldosar(int nCol){
-	GLdouble SVAratio = (xRight - xLeft) / (yTop - yBot);
-	GLdouble w = (GLdouble)WIDTH / (GLdouble)nCol;
-	GLdouble h = w / SVAratio;
-
-	int count_aux = 0;
-	for (GLint c = 0; c<nCol; c++){
-		GLdouble currentH = 0;
-		while ((currentH + h) <= HEIGHT){
-			glViewport((GLint)(c*w), (GLint)currentH, (GLint)w, (GLint)h);
-			if (count_aux == 0){ c0->setProjection(); c0->setModelViewMatrix();}
-			if (count_aux == 1){ c1->setProjection(); c1->setModelViewMatrix();}
-			if (count_aux == 2){ c2->setProjection(); c2->setModelViewMatrix();}
-			if (count_aux == 3){ c3->setProjection(); c3->setModelViewMatrix();} 
-			drawScene(); //dibujar la escena
-			currentH += h;
-			count_aux += 1;
-		}
-	}
-}
-
-void desembaldosar(void){
-	glViewport(0, 0, WIDTH, HEIGHT);
-	c3->setModelViewMatrix();
-	baldosas = false;
-}
-
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	if (baldosas) embaldosar(nCol);
-	else drawScene();
+	drawScene();
 
 	glFlush();
 	glutSwapBuffers();
@@ -236,9 +178,8 @@ void resize(int newWidth, int newHeight) {
 		xLeft=  xMiddle - newWidth/2.0;
 	}
 
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();   
-	glOrtho(xLeft, xRight, yBot, yTop, N, F);
+	// TODO c0->resize(RatioViewPort)
+	c0->setProjection();
 }
 
 void key(unsigned char key, int x, int y){
@@ -256,41 +197,8 @@ void key(unsigned char key, int x, int y){
 		case 'd': angZ=angZ+5; break;
 		case 'c': angZ=angZ-5; break;
 
-		case '1': c3->giraX(); break;
-		case '2': c3->giraY(); break;
-		case '3': c3->giraZ(); break;
-
-		case '4': c3->lateral(); break;
-		case '5': c3->frontal(); break;
-		case '6': c3->cenital(); break;
-		case '7': c3->rincon(); break;
-
-		case 'p': c3->changeProyection(); break;
-
-		case 'q': c3->roll(0.9f); break;
-		case 'w': c3->yaw(0.9f); break;
-		case 'e': c3->pitch(0.9f); break;
-
-		case '8': baldosas = true; break;
-		case '9': baldosas = false; desembaldosar(); break;
-
-		case 'i': c3->zoom(0.95f); break;
-		case 'k': c3->zoom(1.05f); break;
-
 		case 't': e5->lightOn(); break;
 		case 'g': e5->lightOff(); break;
-
-		case 'r': e7->lightOn(); break;
-		case 'f': e7->lightOff(); break;
-
-		case 'y': glEnable(GL_LIGHT1); break;
-		case 'h': glDisable(GL_LIGHT1); break;
-
-		case 'u': glEnable(GL_LIGHT0); break;
-		case 'j': glDisable(GL_LIGHT0); break;
-
-		case 'o': e2->cambiaEsp(-.05f); break;
-		case 'l': e2->cambiaEsp(.05f); break;
 
 		case 'v': e5->avanzaGiro(0.1f, 0.5f); break;
 		case 'b': e5->avanzaGiro(0.1f, -0.5f); break;
@@ -300,10 +208,28 @@ void key(unsigned char key, int x, int y){
 		case ' ': e5->avanza(0.1f); break;
 		case '\'': e5->avanza(-0.1f); break;
 
+		case 'q': c0->moveForward(); break;
+		case 'w': c0->rotate(.3f); break;
+		case 'e': c0->rotate(-.3f); break;
+
+
 		default:
 			  need_redisplay = false;
 			  break;
 	}
+	
+	PuntoVector3D* p0 = new PuntoVector3D(5.0f, .0f, 5.0f, 1.0f);
+	PuntoVector3D* p1 = new PuntoVector3D(5.0f, .0f, 10.0f, 1.0f);
+	PuntoVector3D* p2 = new PuntoVector3D(10.0f, .0f, 10.0f, 1.0f);
+	PuntoVector3D* p3 = new PuntoVector3D(10.0f, .0f, 5.0f, 1.0f);
+
+	
+	PuntoVector3D** aux = new PuntoVector3D*[4];
+	aux[0] = p0; aux[1] = p1; aux[2] = p2; aux[3] = p3;
+
+	
+	Simple2D* d2 = new Simple2D(aux, 4);
+	cout << c0->get2D()->isCollinding(d2) << endl;
 
 	if (need_redisplay)
 		glutPostRedisplay();
@@ -326,31 +252,6 @@ void keyUp(unsigned char key, int x, int y){
 }
 
 int main(int argc, char *argv[]){
-	// TODO remove
-	PuntoVector3D* p0 = new PuntoVector3D(0.0f, .0f, 0.0f, 1.0f);
-	PuntoVector3D* p1 = new PuntoVector3D(0.0f, .0f, 1.0f, 1.0f);
-	PuntoVector3D* p2 = new PuntoVector3D(1.0f, .0f, 1.0f, 1.0f);
-	PuntoVector3D* p3 = new PuntoVector3D(1.0f, .0f, 0.0f, 1.0f);
-	PuntoVector3D* p4 = new PuntoVector3D(0.5f, .0f, 0.5f, 1.0f);
-	PuntoVector3D* p5 = new PuntoVector3D(1.0f, .0f, 0.5f, 1.0f);
-	PuntoVector3D* p6 = new PuntoVector3D(1.0f, .0f, 1.0f, 1.0f);
-	PuntoVector3D* p7 = new PuntoVector3D(0.5f, .0f, 1.0f, 1.0f);
-	PuntoVector3D* p8 = new PuntoVector3D(0.5f, .0f, 2.0f, 1.0f);
-
-	PuntoVector3D** aux0 = new PuntoVector3D*[3];
-	aux0[0] = p1; aux0[1] = p2; aux0[2] = p8;
-	PuntoVector3D** aux1 = new PuntoVector3D*[3];
-	aux1[0] = p0; aux1[1] = p4; aux1[2] = p3;
-
-	Simple2D* a0 = new Simple2D(aux0, 3);
-	Simple2D* a1 = new Simple2D(aux1, 3);
-
-	cout << true << endl;
-	cout << a0->isCollinding(a1) << endl;
-	cout << a1->isCollinding(a0) << endl;
-	// TODO remove
-
-
 	cout<< "Starting console..." << endl;
 
 	cout << "a/z, s/x, d/c  --> Rotaciones habituales." << endl;

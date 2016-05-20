@@ -8,7 +8,7 @@ Camara::Camara() {
        
     left=-10; right=-left; bottom=-10; top=-bottom; 
 	Near=1; Far=1000;
-	fovy=5; aspect=1.0; 
+	fovy=25; aspect=1.0; 
 	  
 	setView();  
 	setProjection();
