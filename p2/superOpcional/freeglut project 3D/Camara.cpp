@@ -62,11 +62,11 @@ void Camara::giraX() {
 	//Gira la cámara alrededor del eje X sobre un plano perpendicular a este eje
 	//TO DO
 	//calculamos el radio
-	GLdouble radio = sqrt((eye->getY() * eye->getY()) + (eye->getZ() * eye->getZ()));
+	GLfloat radio = sqrt((eye->getY() * eye->getY()) + (eye->getZ() * eye->getZ()));
 	//sacamos el angulo
-	GLdouble angulo = atan2(eye->getY(), eye->getZ());
+	GLfloat angulo = atan2(eye->getY(), eye->getZ());
 	//restamos 0.05 radianes
-	angulo -= 0.05;
+	angulo -= 0.05f;
 	//calculamos el nuevo Z
 	eye->setZ(cos(angulo) * radio);
 	//calculamos el nuevo Y
@@ -79,11 +79,11 @@ void Camara::giraY() {
 	//Gira la cámara alrededor del eje Y sobre un plano perpendicular a este eje
 	//TO DO
 	//calculamos el radio
-	GLdouble radio = sqrt((eye->getX() * eye->getX()) + (eye->getZ() * eye->getZ()));
+	GLfloat radio = sqrt((eye->getX() * eye->getX()) + (eye->getZ() * eye->getZ()));
 	//sacamos el angulo
-	GLdouble angulo = atan2(eye->getX(), eye->getZ());
+	GLfloat angulo = atan2(eye->getX(), eye->getZ());
 	//restamos 0.05 radianes
-	angulo -= 0.05;
+	angulo -= 0.05f;
 	//calculamos el nuevo Z
 	eye->setZ(cos(angulo) * radio);
 	//calculamos el nuevo X
@@ -97,11 +97,11 @@ void Camara::giraZ() {
 	//Gira la cámara alrededor del eje Z sobre un plano perpendicular a este eje
 	//TO DO
 	//calculamos el radio
-	GLdouble radio = sqrt((eye->getY() * eye->getY()) + (eye->getX() * eye->getX()));
+	GLfloat radio = sqrt((eye->getY() * eye->getY()) + (eye->getX() * eye->getX()));
 	//sacamos el angulo
-	GLdouble angulo = atan2(eye->getY(), eye->getX());
+	GLfloat angulo = atan2(eye->getY(), eye->getX());
 	//sumamos 0.05 radianes
-	angulo += 0.05;
+	angulo += 0.05f;
 	//calculamos el nuevo Z
 	eye->setX(cos(angulo) * radio);
 	//calculamos el nuevo X
@@ -114,7 +114,7 @@ void Camara::giraZ() {
 void Camara::lateral() {
 	up->setX(0);
 	up->setY(1);
-	GLdouble radio = sqrt(+(eye->getX() * eye->getX()) + (eye->getY() * eye->getY()) + (eye->getZ() * eye->getZ()));
+	GLfloat radio = sqrt(+(eye->getX() * eye->getX()) + (eye->getY() * eye->getY()) + (eye->getZ() * eye->getZ()));
 	eye->setX(radio);
 	eye->setY(0.0f);
 	eye->setZ(0.0f);
@@ -125,7 +125,7 @@ void Camara::lateral() {
 void Camara::frontal() {
 	up->setX(0);
 	up->setY(1);
-	GLdouble radio = sqrt(+(eye->getX() * eye->getX()) + (eye->getY() * eye->getY()) + (eye->getZ() * eye->getZ()));
+	GLfloat radio = sqrt(+(eye->getX() * eye->getX()) + (eye->getY() * eye->getY()) + (eye->getZ() * eye->getZ()));
 	eye->setZ(radio);
 	eye->setX(0.0f);
 	eye->setY(0.0f);
@@ -136,7 +136,7 @@ void Camara::frontal() {
 void Camara::cenital() {
 	up->setX(1);
 	up->setY(0);
-	GLdouble radio = sqrt(+(eye->getX() * eye->getX()) + (eye->getY() * eye->getY()) + (eye->getZ() * eye->getZ()));
+	GLfloat radio = sqrt(+(eye->getX() * eye->getX()) + (eye->getY() * eye->getY()) + (eye->getZ() * eye->getZ()));
 	eye->setY(radio);
 	eye->setX(0.0f);
 	eye->setZ(0.0f);
@@ -147,8 +147,8 @@ void Camara::cenital() {
 void Camara::rincon() {
 	up->setX(0);
 	up->setY(1);
-	GLdouble radio = sqrt(+(eye->getX() * eye->getX()) + (eye->getY() * eye->getY()) + (eye->getZ() * eye->getZ()));
-	GLdouble aux = sqrt((radio*radio)/3.0f);
+	GLfloat radio = sqrt(+(eye->getX() * eye->getX()) + (eye->getY() * eye->getY()) + (eye->getZ() * eye->getZ()));
+	GLfloat aux = sqrt((radio*radio)/3.0f);
 	eye->setX(aux);
 	eye->setY(aux);
 	eye->setZ(aux);
@@ -159,8 +159,8 @@ void Camara::rincon() {
 void Camara::roll(float ang) {
 	//Rota la cámara tal como se explica en las transparencias
 	//TO DO
-	GLdouble cs = cos(ang / 180.0f * 3.1415f);
-	GLdouble sn = sin(ang / 180.0f * 3.1415f);
+	GLfloat cs = cos(ang / 180.0f * 3.1415f);
+	GLfloat sn = sin(ang / 180.0f * 3.1415f);
 	v->setX(cs*v->getX() - sn*u->getX());
 	v->setY(cs*v->getY() - sn*u->getY());
 	v->setZ(cs*v->getZ() - sn*u->getZ());
@@ -174,8 +174,8 @@ void Camara::roll(float ang) {
 }
 
 void Camara::pitch(float ang) {		
-	GLdouble cs = cos(ang / 180.0f * 3.1415f);
-	GLdouble sn = sin(ang / 180.0f * 3.1415f);
+	GLfloat cs = cos(ang / 180.0f * 3.1415f);
+	GLfloat sn = sin(ang / 180.0f * 3.1415f);
 	v->setX(cs*v->getX() + sn*n->getX());
 	v->setY(cs*v->getY() + sn*n->getY());
 	v->setZ(cs*v->getZ() + sn*n->getZ());
@@ -189,8 +189,8 @@ void Camara::pitch(float ang) {
 }
 
 void Camara::yaw(float ang) {		
-	GLdouble cs = cos(ang / 180.0f * 3.1415f);
-	GLdouble sn = sin(ang / 180.0f * 3.1415f);
+	GLfloat cs = cos(ang / 180.0f * 3.1415f);
+	GLfloat sn = sin(ang / 180.0f * 3.1415f);
 	u->setX(cs*u->getX() - sn*n->getX());
 	u->setY(cs*u->getY() - sn*n->getY());
 	u->setZ(cs*u->getZ() - sn*n->getZ());

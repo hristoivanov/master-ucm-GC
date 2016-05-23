@@ -16,11 +16,15 @@ public:
 	TAfin();
 
 	void traslada(PuntoVector3D* v);
-	void TAfin::rota(GLfloat angulo, PuntoVector3D* v);
+	void rota(GLfloat angulo, PuntoVector3D* v);
 	void escala(PuntoVector3D* v);
 
 	void setTraslada(GLfloat x, GLfloat y, GLfloat z);
 	void setRota(GLfloat x, GLfloat y, GLfloat z);
 	void setEscala(GLfloat x, GLfloat y, GLfloat z);
+
+	GLfloat* getTraslada();
+	GLfloat* getRota();
+	GLfloat* getEscala();
 };
 #endif

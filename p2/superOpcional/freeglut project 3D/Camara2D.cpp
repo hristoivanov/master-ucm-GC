@@ -1,13 +1,13 @@
 #include "Camara2D.h"
 
 Camara2D::Camara2D() {
-	eye = new PuntoVector3D(-20.0f, 10.0f, .0f, 1.0f);
-	look = new PuntoVector3D(-19.9f, 10.0f, .0f, 1.0f);
-	up = new PuntoVector3D(.0f, 1.0f, .0f, .0f);
+	eye = new PuntoVector3D(-20.0f, 10.0f, .0f, 1);
+	look = new PuntoVector3D(-19.9f, 10.0f, .0f, 1);
+	up = new PuntoVector3D(.0f, 1.0f, .0f, 0);
 
 	left = -10; right = -left; bottom = 0; top = 20;
 	Near = 1; Far = 45;
-	fovy = 60; aspect = 1.0;
+	fovy = 60; aspect = 1.0f;
 
 	setView();
 	setProjection();
@@ -67,8 +67,8 @@ void Camara2D::moveForward(){
 }
 
 void Camara2D::rotate(float ang) {
-	GLdouble cs = cos(ang / 180.0f * 3.1415f);
-	GLdouble sn = sin(ang / 180.0f * 3.1415f);
+	GLfloat cs = cos(ang / 180.0f * 3.1415f);
+	GLfloat sn = sin(ang / 180.0f * 3.1415f);
 
 	PuntoVector3D* aux = look->clonar();
 	aux->restar(eye);
@@ -89,12 +89,12 @@ Simple2D* Camara2D::get2D(){
 	aux->restar(eye);
 	aux->normalizar();
 
-	GLdouble ang = fovy / 2.0f;
-	GLdouble cs = cos(ang / 180.0f * 3.1415f);
-	GLdouble sn = sin(ang / 180.0f * 3.1415f);
+	GLfloat ang = fovy / 2.0f;
+	GLfloat cs = cos(ang / 180.0f * 3.1415f);
+	GLfloat sn = sin(ang / 180.0f * 3.1415f);
 
-	GLdouble farHypotenuse = Far / cs;
-	GLdouble nearHypotenuse = Near / cs;
+	GLfloat farHypotenuse = Far / cs;
+	GLfloat nearHypotenuse = Near / cs;
 
 	PuntoVector3D* aux0 = aux->clonar();
 	aux0->setX(aux0->getX() * cs - aux0->getZ() * sn);

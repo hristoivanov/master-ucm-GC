@@ -19,14 +19,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -81,6 +81,7 @@
     <ClCompile Include="Esfera.cpp" />
     <ClCompile Include="Faro.cpp" />
     <ClCompile Include="Farola.cpp" />
+    <ClCompile Include="List.cpp" />
     <ClCompile Include="Luz.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Malla.cpp" />
@@ -88,6 +89,7 @@
     <ClCompile Include="ObjetoCompuesto.cpp" />
     <ClCompile Include="Pino.cpp" />
     <ClCompile Include="PuntoVector3D.cpp" />
+    <ClCompile Include="QuadtreeNode.cpp" />
     <ClCompile Include="Roble.cpp" />
     <ClCompile Include="Rueda.cpp" />
     <ClCompile Include="Simple2D.cpp" />
@@ -110,12 +112,14 @@
     <ClInclude Include="Esfera.h" />
     <ClInclude Include="Faro.h" />
     <ClInclude Include="Farola.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="Luz.h" />
     <ClInclude Include="Malla.h" />
     <ClInclude Include="Objeto3D.h" />
     <ClInclude Include="ObjetoCompuesto.h" />
     <ClInclude Include="Pino.h" />
     <ClInclude Include="PuntoVector3D.h" />
+    <ClInclude Include="QuadtreeNode.h" />
     <ClInclude Include="Roble.h" />
     <ClInclude Include="Rueda.h" />
     <ClInclude Include="Simple2D.h" />

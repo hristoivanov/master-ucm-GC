@@ -10,6 +10,9 @@
 #include "Farola.h"
 #include "Camara2D.h"
 #include "Simple2D.h"
+#include "List.h"
+#include "QuadtreeNode.h"
+
 #include <GL/freeglut.h>
 //#include <GL/glut.h>
 
@@ -28,16 +31,15 @@ GLdouble xRight=10, xLeft=-xRight, yTop=10, yBot=-yTop, N=1, F=1000;
 
 // Scene variables
 GLfloat angX, angY, angZ; 
-Abeto *e1;
-Roble *e2;
-Pino *e3;
-Alamo *e4;
-Coche *e5;
-Esfera *e6;
-Farola *e7;
 
 //Camara
 Camara2D* c0;
+
+//Quadtree related
+int rows = 30, columns = 30;
+List* theList;
+QuadtreeNode* theQuadtree;
+bool isFrustumCulled = true;
 
 
 void buildSceneObjects() {	 
@@ -45,22 +47,18 @@ void buildSceneObjects() {
     angY=0.0f;
     angZ=0.0f;	
 
-	e1 = new Abeto();
-	e1->mT->setTraslada(1.0f, 0.0f, 6.0f);
-	e2 = new Roble();
-	e2->mT->setTraslada(1.0f, 0.0f, 12.0f);
-	e3 = new Pino();
-	e3->mT->setTraslada(1.0f, 0.0, 18.0f);
-	e4 = new Alamo();
-	e4->mT->setTraslada(1.0f, 0.0, 24.0f);
-	e5 = new Coche();
-	e5->mT->setTraslada(1.0f, 2.2f, .0f);
-	e6 = new Esfera(1000, 1000);
-	e6->mT->setTraslada(15.0f, .0f, .0f);
-	e6->mT->setEscala(10,10,10);
-	e6->setColor(1.0f, .6f, 1.0f);
-	e7 = new Farola;
-	e7->mT->setTraslada(1.0f, 0.0, 32.0f);
+	theList = new List();
+	Objeto3D* obj;
+	int x, z;
+	for (x=0; x<rows*10; x+=10){
+		for (z=0; z<columns*10; z+=10){
+			obj = new Abeto();
+			obj->setTraslada(x, 0, z);
+			theList->add(obj);
+		}	
+	}
+
+	theQuadtree = new QuadtreeNode(.0f, .0f, rows*10.0f, columns*10.0f, theList);
 }
 
 void initGL() {	 		 
@@ -124,22 +122,15 @@ void drawScene(void){
 	glVertex3f(0, 0, 20);
 	glEnd();
 
-	// Dibuja las luces de los objetos, si existen.
-	e1->_dibuja();
-	e2->_dibuja();
-	e3->_dibuja();
-	e4->_dibuja();
-	e5->_dibuja();
-	e6->_dibuja();
-	e7->_dibuja();
-
-	e1->dibuja();
-	e2->dibuja();
-	e3->dibuja();
-	e4->dibuja();
-	e5->dibuja();
-	e6->dibuja();
-	e7->dibuja();
+	if(!isFrustumCulled){
+		struct List::Node* n = theList->head;
+		while(n != NULL){
+			n->elem->dibuja();
+			n = n->next;
+		}
+	}else{
+		theQuadtree->draw(c0->get2D());
+	}
 
 	// Drawing the scene	 		 
 	glColor3f(1.0, 1.0, 1.0);
@@ -197,39 +188,18 @@ void key(unsigned char key, int x, int y){
 		case 'd': angZ=angZ+5; break;
 		case 'c': angZ=angZ-5; break;
 
-		case 't': e5->lightOn(); break;
-		case 'g': e5->lightOff(); break;
-
-		case 'v': e5->avanzaGiro(0.1f, 0.5f); break;
-		case 'b': e5->avanzaGiro(0.1f, -0.5f); break;
-		case 'n': e5->avanzaGiro(-0.1f, 0.5f); break;
-		case 'm': e5->avanzaGiro(-0.1f, -0.5f); break;
-
-		case ' ': e5->avanza(0.1f); break;
-		case '\'': e5->avanza(-0.1f); break;
-
 		case 'q': c0->moveForward(); break;
 		case 'w': c0->rotate(.3f); break;
 		case 'e': c0->rotate(-.3f); break;
+
+		case 'o': isFrustumCulled = true; break;
+		case 'p': isFrustumCulled = false; break;
 
 
 		default:
 			  need_redisplay = false;
 			  break;
 	}
-	
-	PuntoVector3D* p0 = new PuntoVector3D(5.0f, .0f, 5.0f, 1.0f);
-	PuntoVector3D* p1 = new PuntoVector3D(5.0f, .0f, 10.0f, 1.0f);
-	PuntoVector3D* p2 = new PuntoVector3D(10.0f, .0f, 10.0f, 1.0f);
-	PuntoVector3D* p3 = new PuntoVector3D(10.0f, .0f, 5.0f, 1.0f);
-
-	
-	PuntoVector3D** aux = new PuntoVector3D*[4];
-	aux[0] = p0; aux[1] = p1; aux[2] = p2; aux[3] = p3;
-
-	
-	Simple2D* d2 = new Simple2D(aux, 4);
-	cout << c0->get2D()->isCollinding(d2) << endl;
 
 	if (need_redisplay)
 		glutPostRedisplay();
@@ -238,13 +208,9 @@ void key(unsigned char key, int x, int y){
 void keyUp(unsigned char key, int x, int y){
 	bool need_redisplay = true;
 	switch (key) {
-	case '1': e5->resetRuedas(0.5f); break;
-	case '2': e5->resetRuedas(-0.5f); break;
-	case '3': e5->resetRuedas(0.5f); break;
-	case '4': e5->resetRuedas(-0.5f); break;
-	default:
-		need_redisplay = false;
-		break;
+		default:
+			need_redisplay = false;
+			break;
 	}
 
 	if (need_redisplay)
@@ -255,21 +221,8 @@ int main(int argc, char *argv[]){
 	cout<< "Starting console..." << endl;
 
 	cout << "a/z, s/x, d/c  --> Rotaciones habituales." << endl;
-	cout << "1, 2, 3        --> Rotaciones de la camara alrededor de los ejes." << endl;
-	cout << "4, 5, 6, 7     --> Vistas lateral, frontal, cenital, rincon." << endl;
-	cout << "p              --> Cambiar de proyeccion, perspectiva u ortogonal." << endl;
-	cout << "q, w, e        --> Rotaciones de la camara: roll, yaw, pitch." << endl;
-	cout << "8, 9           --> Embaldosar, Desembaldosar." << endl;
-	cout << "i, k           --> ZoomIn, ZoomOut." << endl;
-	cout << endl;
-	cout << "t, g           --> Apagar/Encender los faros del coche." << endl;
-	cout << "r, f           --> Apagar/Encender la farola." << endl;
-	cout << "y, h           --> Apagar/Encender la luz direccional." << endl;
-	cout << "u, j           --> Apagar/Encender la luz ambiental." << endl;
-	cout << "l, o           --> Aumentar/Disminuir la componente especular de la copa." << endl;
-	cout << endl;
-	cout << "v, b, n, m     --> Mover el coche con giro." << endl;
-	cout << "<space>, '     --> Mover el coche, delante/atras." << endl;
+	cout << "q, w, e        --> Mover la camara." << endl;
+	cout << "o, p,          --> isFrustumCulled True/False." << endl;
 
 	int my_window; // my window's identifier
 

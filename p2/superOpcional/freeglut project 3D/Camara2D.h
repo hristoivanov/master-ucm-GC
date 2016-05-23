@@ -12,7 +12,7 @@ class Camara2D {
 private:
 	PuntoVector3D *eye, *up, *look, *u, *v, *n;
 	GLfloat left, right, bottom, top, Near, Far;
-	GLdouble fovy, aspect;
+	GLfloat fovy, aspect;
 
 	PuntoVector3D* incForward;
 

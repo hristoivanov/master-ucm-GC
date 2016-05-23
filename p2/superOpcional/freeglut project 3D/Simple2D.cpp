@@ -18,9 +18,15 @@ Simple2D::Simple2D(PuntoVector3D** puntos, int leght) {
 }
 
 Simple2D::Simple2D(PuntoVector3D* center, float radius){
-	bl = new PuntoVector3D(center->getX() - radius, 0.0f, center->getZ() - radius, 1.0f);
-	tr = new PuntoVector3D(center->getX() + radius, 0.0f, center->getZ() + radius, 1.0f);
+	bl = new PuntoVector3D(center->getX() - radius, 0.0f, center->getZ() - radius, 1);
+	tr = new PuntoVector3D(center->getX() + radius, 0.0f, center->getZ() + radius, 1);
 }
+
+Simple2D::Simple2D(float bl_x, float bl_z, float tr_x, float tr_z){
+	bl = new PuntoVector3D(bl_x, .0f, bl_z, 1);
+	tr = new PuntoVector3D(tr_x, .0f, tr_z, 1);
+}
+
 
 
 bool Simple2D::isCollinding(Simple2D* other){

@@ -12,6 +12,7 @@ private:
 public:
 	Simple2D(PuntoVector3D** puntos, int leght);
 	Simple2D(PuntoVector3D* center, float radius);
+	Simple2D(float bl_x, float bl_Z, float tr_x, float tr_z);
 	bool isCollinding(Simple2D* other);
 };
 #endif

@@ -84,3 +84,15 @@ void TAfin::applyTransforms(){
 		glGetFloatv(GL_MODELVIEW_MATRIX, m);
 	glPopMatrix();
 }
+
+GLfloat* TAfin::getTraslada(){
+	return posicion;
+}
+
+GLfloat* TAfin::getRota(){
+	return rotacion;
+}
+
+GLfloat* TAfin::getEscala(){
+	return escalado;
+}
