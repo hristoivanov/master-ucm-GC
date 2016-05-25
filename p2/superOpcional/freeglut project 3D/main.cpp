@@ -36,7 +36,7 @@ GLfloat angX, angY, angZ;
 Camara2D* c0;
 
 //Quadtree related
-int rows = 30, columns = 30;
+int rows = 100, columns = 100;
 List* theList;
 QuadtreeNode* theQuadtree;
 bool isFrustumCulled = true;
@@ -50,10 +50,24 @@ void buildSceneObjects() {
 	theList = new List();
 	Objeto3D* obj;
 	int x, z;
+	int intTree;
+	float altura, anchura;
 	for (x=0; x<rows*10; x+=10){
 		for (z=0; z<columns*10; z+=10){
-			obj = new Abeto();
+			altura = .9f + (static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * .2f;
+			anchura = .9f + (static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * .2f;
+			intTree = rand() % 4;
+			if (intTree == 0)
+				obj = new Abeto();
+			if (intTree == 1)
+				obj = new Alamo();
+			if (intTree == 2)
+				obj = new Pino();
+			if (intTree == 3)
+				obj = new Roble();
+
 			obj->setTraslada(x, 0, z);
+			obj->setEscala(anchura, altura, anchura);
 			theList->add(obj);
 		}	
 	}

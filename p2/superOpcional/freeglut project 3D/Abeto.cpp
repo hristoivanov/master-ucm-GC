@@ -42,8 +42,10 @@ void Abeto::setTraslada(GLfloat x, GLfloat y, GLfloat z){
 
 void Abeto::setEscala(GLfloat x, GLfloat y, GLfloat z){
 	float max = x;
-	if (y > max) max = y;
 	if (z > max) max = z;
-	_2d = new Simple2D(new PuntoVector3D(x, y, z, 1), max);
+	GLfloat xx = mT->getTraslada()[0];
+	GLfloat yy = mT->getTraslada()[1];
+	GLfloat zz = mT->getTraslada()[2];
+	_2d = new Simple2D(new PuntoVector3D(xx, yy, zz, 1), max);
 	mT->setEscala(x, y, z);
 }

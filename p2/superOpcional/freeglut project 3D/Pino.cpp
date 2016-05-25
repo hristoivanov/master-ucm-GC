@@ -44,3 +44,18 @@ Pino::Pino() {
 	hijos[5]->setRota(90.0, 0.0, 0.0);
 	hijos[5]->setColor(.4f, 1.0f, .4f);
 }
+
+void Pino::setTraslada(GLfloat x, GLfloat y, GLfloat z){
+	_2d = new Simple2D(new PuntoVector3D(x, y, z, 1), 1.0f);
+	mT->setTraslada(x, y, z);
+}
+
+void Pino::setEscala(GLfloat x, GLfloat y, GLfloat z){
+	float max = x;
+	if (z > max) max = z;
+	GLfloat xx = mT->getTraslada()[0];
+	GLfloat yy = mT->getTraslada()[1];
+	GLfloat zz = mT->getTraslada()[2];
+	_2d = new Simple2D(new PuntoVector3D(xx, yy, zz, 1), max);
+	mT->setEscala(x, y, z);
+}

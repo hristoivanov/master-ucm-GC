@@ -27,30 +27,17 @@ Roble::Roble() {
 	colorEsp[0] = .5f; colorEsp[1] = .5f; colorEsp[2] = 0.5f;
 }
 
-void Roble::dibuja() {
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glMultMatrixf(this->mT->m);
-	for (int i = 0; i < numHijos; i++){
-		if (i != 2)
-			hijos[i]->dibuja();
-		else{
-			glMaterialfv(GL_FRONT, GL_SPECULAR, colorEsp);
-			hijos[i]->dibuja();
-			GLfloat amb[] = { 0.0f, 0.0f, 0.0f};
-			glMaterialfv(GL_FRONT, GL_SPECULAR, amb);
-		}
-	}
-	glPopMatrix();
+void Roble::setTraslada(GLfloat x, GLfloat y, GLfloat z){
+	_2d = new Simple2D(new PuntoVector3D(x, y, z, 1), 1.0f);
+	mT->setTraslada(x, y, z);
 }
-void Roble::cambiaEsp(float aux) {
-	GLfloat a = colorEsp[0] + aux;
-	if (a > 1.0f)
-		a = 1.0f;
-	if (a < .0f)
-		a = .0f;
 
-	colorEsp[0] = a;
-	colorEsp[1] = a;
-	colorEsp[2] = a;
+void Roble::setEscala(GLfloat x, GLfloat y, GLfloat z){
+	float max = x;
+	if (z > max) max = z;
+	GLfloat xx = mT->getTraslada()[0];
+	GLfloat yy = mT->getTraslada()[1];
+	GLfloat zz = mT->getTraslada()[2];
+	_2d = new Simple2D(new PuntoVector3D(xx, yy, zz, 1), max);
+	mT->setEscala(x, y, z);
 }

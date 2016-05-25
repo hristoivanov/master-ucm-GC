@@ -11,7 +11,7 @@ private:
 	GLfloat* colorEsp;
 public:
 	Roble();
-	void dibuja();
-	void cambiaEsp(float aux);
+	void setTraslada(GLfloat x, GLfloat y, GLfloat z);
+	void setEscala(GLfloat x, GLfloat y, GLfloat z);
 };
 #endif
