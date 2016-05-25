@@ -73,10 +73,8 @@
     <ClCompile Include="Cilindro.cpp" />
     <ClCompile Include="Coche.cpp" />
     <ClCompile Include="Color.cpp" />
-    <ClCompile Include="Conjunto.cpp" />
     <ClCompile Include="Cubo.cpp" />
     <ClCompile Include="Disco.cpp" />
-    <ClCompile Include="Elemento.cpp" />
     <ClCompile Include="Esfera.cpp" />
     <ClCompile Include="Faro.cpp" />
     <ClCompile Include="Farola.cpp" />
@@ -100,10 +98,8 @@
     <ClInclude Include="Cilindro.h" />
     <ClInclude Include="Coche.h" />
     <ClInclude Include="Color.h" />
-    <ClInclude Include="Conjunto.h" />
     <ClInclude Include="Cubo.h" />
     <ClInclude Include="Disco.h" />
-    <ClInclude Include="Elemento.h" />
     <ClInclude Include="Esfera.h" />
     <ClInclude Include="Faro.h" />
     <ClInclude Include="Farola.h" />

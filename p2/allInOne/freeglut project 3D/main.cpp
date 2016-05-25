@@ -93,9 +93,7 @@ void initGL() {
 	glLightfv(GL_LIGHT0, GL_AMBIENT, a0);
 	GLfloat s0[]={.0f, .0f, .0f, 1.0f};
 	glLightfv(GL_LIGHT0, GL_SPECULAR, s0);
-	GLfloat p0[]={25.0f, 25.0f, 25.0f, 1.0f};	 
-	glLightfv(GL_LIGHT0, GL_POSITION, p0);
-
+	
 	// Light1
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT1);
