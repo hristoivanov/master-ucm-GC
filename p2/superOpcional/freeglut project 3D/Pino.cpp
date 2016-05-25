@@ -43,6 +43,8 @@ Pino::Pino() {
 	hijos[5]->setEscala(anchuraCopa, anchuraCopa, alturaCopa);
 	hijos[5]->setRota(90.0, 0.0, 0.0);
 	hijos[5]->setColor(.4f, 1.0f, .4f);
+
+	_2d = new Simple2D(new PuntoVector3D(0.0f, 0.0f, 0.0f, 1), 1.0f);
 }
 
 void Pino::setTraslada(GLfloat x, GLfloat y, GLfloat z){

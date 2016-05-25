@@ -25,6 +25,8 @@ Roble::Roble() {
 	hijos[2]->setColor(.4f, 1.0f, .4f);
 	colorEsp = new float[3]();
 	colorEsp[0] = .5f; colorEsp[1] = .5f; colorEsp[2] = 0.5f;
+
+	_2d = new Simple2D(new PuntoVector3D(0.0f, 0.0f, 0.0f, 1), 1.0f);
 }
 
 void Roble::setTraslada(GLfloat x, GLfloat y, GLfloat z){

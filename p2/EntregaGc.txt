@@ -1,0 +1,61 @@
+Grupo:
+	Hristo Ivanov Ivanov
+	Alberto Lorente Sánchez
+
+Notas:
+	Parte obligatoria:
+		Está implementado todo. Se adjunta solo un proyecto Visual(allInOne) que contiene todo.
+
+	Parte opcional:
+		Está implementado todo. Se adjuntan dos proyectos Visual.
+			allInOne(el mismo que la parte obligatoria) que contiene todo, a excepción del hipotrocoide.
+			hipotrocoide que contiene el movimiento de la camara por el hipotrocoide.
+
+	Parte opcional extra:
+		Un proyecto Visual, superOpcional.
+
+	Para corregir más rápido, empezar por la parte opcional dirrectamente dado que incluye todo.
+	  Revisar los proyectos en este orden:
+		allInOne
+		hipotrocoide
+		superOpcional
+
+Quadtree:
+	Controles:
+		q, w, e: 	Mover la camara.
+		o, p:		isFrustumCulled True/False.
+
+	Detección de solapamiento entre objetos:
+		Implementada en la clase Simple2D.
+		Esta clase dado un objeto calcula su rectángulo delimitador, en el que basa la detección de colisiones.
+		Usar el rectángulo delimitador es una técnica muy utilizada para acelerar la detección de colisiones,
+		  donde el calculo se aborta, sí se detecta que los dos rectángulos no solapan.
+		Constructores:
+			Simple2D(PuntoVector3D** puntos, int leght);
+			Simple2D(PuntoVector3D* center, float radius);
+			Simple2D(float bl_x, float bl_Z, float tr_x, float tr_z);
+		La función que determina el solapamiento entre objetos es:
+			bool isCollinding(Simple2D* other);
+
+	Objeto3D:
+		Añadir atributos:
+			Simple2D* _2d;
+
+	Arboles:
+		Todos los arboles inicializan su atributo _2d de la misma forma, como un círculo de radio 1.0f.
+			_2d = new Simple2D(new PuntoVector3D(0.0f, 0.0f, 0.0f, 1), 1.0f);
+		Al trasladar y escalar el el arbol el atributo _2d también cambia.
+
+	Camara2D:
+		Implementa los movimientos necesarios para explorar el bosque(q, w, e).
+		Ofrece el siguiente metodo:
+			Simple2D* get2D();
+
+	Quadtree:
+		Implementado siguiendo la presentación de clase.
+		En mi caso lo hace mucho más rápido, supongo que es porque a cada quadtree hijo le paso tán solo
+		  la lista de elementos con los que el padre solapa, en lugar de pasarle todos.
+
+	Problemas:
+		Cuando hay dos objetos que solapan la generación del quadtree se vuelve un bucle infinito,
+		  dado que intenta dividir las regiones hasta conseguir un solo objeto por región.

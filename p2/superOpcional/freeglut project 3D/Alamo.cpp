@@ -28,6 +28,8 @@ Alamo::Alamo() {
 	hijos[3]->setTraslada(anchuraCopa / 2.0f, alturaTronco, 0.0f);
 	hijos[3]->setEscala(anchuraCopa, anchuraCopa, anchuraCopa);
 	hijos[3]->setColor(.4f, 1.0f, .4f);
+
+	_2d = new Simple2D(new PuntoVector3D(0.0f, 0.0f, 0.0f, 1), 1.0f);
 }
 
 void Alamo::setTraslada(GLfloat x, GLfloat y, GLfloat z){
