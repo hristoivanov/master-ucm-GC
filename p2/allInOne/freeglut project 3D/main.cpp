@@ -311,10 +311,10 @@ void key(unsigned char key, int x, int y){
 void keyUp(unsigned char key, int x, int y){
 	bool need_redisplay = true;
 	switch (key) {
-	case '1': e5->resetRuedas(0.5f); break;
-	case '2': e5->resetRuedas(-0.5f); break;
-	case '3': e5->resetRuedas(0.5f); break;
-	case '4': e5->resetRuedas(-0.5f); break;
+	case 'v': e5->resetRuedas(0.5f); break;
+	case 'b': e5->resetRuedas(-0.5f); break;
+	case 'n': e5->resetRuedas(0.5f); break;
+	case 'm': e5->resetRuedas(-0.5f); break;
 	default:
 		need_redisplay = false;
 		break;
